@@ -1,0 +1,391 @@
+---
+title: "Computational Approaches to Text Analysis"
+institute: "UC Riverside Library"
+format:
+  revealjs:
+    theme: [default, instructions/assets/slides.scss]
+    slide-number: true
+    incremental: true
+    transition: slide
+    background-transition: fade
+    progress: true
+    chalkboard: true
+    footer: "Computational Approaches to Text Analysis · UCR Library"
+    logo: logo.png
+    width: 1280
+    height: 720
+---
+
+## Workshop Overview
+
+Four methods, one dataset, increasing complexity
+
+| Section | Method | Tool |
+|---|---|---|
+| 1 | Software QDA | Taguette / QualCoder |
+| 2 | Word Counting | Voyant Tools |
+| 3 | Sentiment Analysis | VADER |
+| 4 | Topic Modeling | BERTopic |
+
+::: {.notes}
+Welcome everyone. We will move through four methods today, all applied to the same dataset. The goal is not to master each tool but to understand what each approach can and cannot do.
+:::
+
+---
+
+## The Dataset
+
+**50 interview paragraphs** from six digital influencers
+
+Alex · Ben · Gina · Linda · Margot · Otto
+
+Topics: ethics, sponsorship transparency, audience relationships
+
+Source: Renata Gonçalves Curty (UCSB), [zenodo.org/records/18604273](https://zenodo.org/records/18604273)
+
+::: {.notes}
+All four methods use this same dataset. Having a shared dataset lets us compare what each method surfaces and what it misses.
+:::
+
+# 1 · Software QDA {background-color="#003da5" style="color: white;"}
+
+Manual coding with Taguette and QualCoder
+
+---
+
+## What Is Software-Assisted QDA?
+
+Structures what researchers have always done: read closely, annotate, and organize meaning.
+
+. . .
+
+Core functions:
+
+- **Code**: assign labels to passages
+- **Memo**: write interpretive notes
+- **Query**: search across codes and documents
+- **Visualize**: co-occurrence maps, frequency charts
+
+. . .
+
+The software does not find themes. It helps you track and retrieve the themes you identify.
+
+::: {.notes}
+Emphasize that QDA software is a tool for organizing human interpretation, not automating it. The analyst still makes every decision.
+:::
+
+---
+
+## QDA Tools
+
+| Tool | Type | AI | Data |
+|---|---|---|---|
+| ATLAS.ti, NVivo, MAXQDA | Commercial | Cloud-based | Vendor servers |
+| QualCoder | Open source | Local (Ollama) | Your machine |
+| Taguette | Open source | None | Your machine |
+
+. . .
+
+UCR Library has ATLAS.ti access at the [STAR Lab](https://library.ucr.edu/using-the-library/technology-equipment/specialty-labs) — make a reservation before your visit.
+
+---
+
+## AI-Assisted Coding
+
+AI can suggest codes, summarize passages, and group themes.
+
+. . .
+
+Best practice:
+
+- Structure prompts incrementally, one task at a time
+- Review every AI suggestion before accepting it
+- Document your prompts and model used
+- De-identify data before sending to any cloud model
+- Prefer local models for sensitive transcripts
+
+::: {.notes}
+The key tension is between efficiency and interpretive control. AI can speed up initial coding but introduces the risk of accepting suggestions without critical review.
+:::
+
+---
+
+## Exercise {background-color="#ffb81c"}
+
+**In class:** Taguette — runs in the browser, no installation needed
+
+[app.taguette.org](https://app.taguette.org)
+
+. . .
+
+**Take-home:** QualCoder with the Zenodo demo project
+
+[zenodo.org/records/18604273](https://zenodo.org/records/18604273)
+
+. . .
+
+Full instructions: [1b · Hands-On QDA Exercise](instructions/software_qda_exercise.html)
+
+# 2 · Word Counting {background-color="#003da5" style="color: white;"}
+
+Frequency analysis with Voyant Tools
+
+---
+
+## Pre-Processing Steps
+
+Before counting, text must be cleaned:
+
+1. **Tokenizing**: split text into individual words
+2. **Normalizing**: lowercase, remove punctuation
+3. **Filtering stop words**: remove "the", "and", "is"
+4. **Lemmatizing**: "promoting", "promotes", "promoted" → "promote"
+
+. . .
+
+These choices directly shape what the analysis surfaces.
+
+---
+
+## What Frequency Reveals and Conceals
+
+::: {.columns}
+::: {.column width="50%"}
+**Reveals**
+
+- Recurring concepts
+- Vocabulary differences across speakers
+- Outlier vocabulary
+:::
+::: {.column width="50%"}
+**Misses**
+
+- Tone and evaluation
+- Sarcasm, hedging, negation
+- Context and sequence
+:::
+:::
+
+. . .
+
+Frequency is a starting point, not a finding.
+
+---
+
+## Voyant Tools
+
+Browser-based, no installation: [voyant-tools.org](https://voyant-tools.org)
+
+| Panel | What it shows |
+|---|---|
+| Cirrus | Word cloud of top terms |
+| Trends | Frequency across documents |
+| Contexts | Keywords in surrounding sentences |
+| Collocates | Words that consistently appear together |
+
+---
+
+## Exercise {background-color="#ffb81c"}
+
+Upload `.txt` files from [zenodo.org/records/18604273](https://zenodo.org/records/18604273)
+
+. . .
+
+1. Review the top 5–10 words in Cirrus
+2. Check Trends: are any words used by only one speaker?
+3. Use Contexts to read a word in surrounding sentences
+4. Edit stop words with **Define Options** — copy and paste words exactly
+
+. . .
+
+Full instructions: [2 · Word Counting](instructions/word_counting.html) and [2b · Exercise](instructions/word_counting_exercise.html)
+
+# 3 · Sentiment Analysis {background-color="#003da5" style="color: white;"}
+
+Scoring tone with VADER
+
+---
+
+## What Is Sentiment Analysis?
+
+Assigns a numerical score: positive, negative, or neutral.
+
+. . .
+
+**VADER** works from a lexicon of pre-scored words. Designed for short, informal social media text.
+
+| Score | Meaning |
+|---|---|
+| `positive` | Proportion of tokens with positive valence |
+| `negative` | Proportion of tokens with negative valence |
+| `compound` | −1.0 (most negative) to +1.0 (most positive) |
+
+. . .
+
+Compound ≥ +0.05 = **positive** · ≤ −0.05 = **negative** · between = **neutral**
+
+---
+
+## The Results
+
+::: {.r-fit-text}
+**48 of 50 paragraphs score as positive**
+:::
+
+. . .
+
+Compound scores cluster between +0.70 and +0.98
+
+All six speakers have median scores above +0.75
+
+---
+
+## What Does This Mean?
+
+VADER reads *honest*, *trust*, *values*, *responsible* as positive.
+
+But interview responses use these words to frame complex situations.
+
+. . .
+
+The tool cannot distinguish between:
+
+- "I believe in transparency" *(conviction)*
+- "I always say I believe in transparency" *(performative)*
+- "I believe in transparency, but sometimes it's difficult" *(with reservation)*
+
+. . .
+
+**The genre shapes the signal.**
+
+::: {.notes}
+This is the key teaching moment for sentiment analysis. The near-uniform positive result is not about the speakers' sincerity — it reflects the interview genre, where professional self-presentation calls for positive framing.
+:::
+
+---
+
+## What the Scores Do Reveal
+
+Even within a uniformly positive distribution:
+
+- **Ben-003** scores negative — he is describing *other influencers'* unethical behavior
+- Speakers with lower averages (Ben, Gina) use more hedged language
+- Box plot width shows tone consistency within each speaker
+
+. . .
+
+Full results: [3 · Sentiment Analysis](instructions/sentiment_analysis.html)
+
+# 4 · Topic Modeling {background-color="#003da5" style="color: white;"}
+
+BERTopic with nomic-embed-text and llama3.1
+
+---
+
+## What Is Topic Modeling?
+
+Groups documents by shared patterns — without reading each one individually.
+
+. . .
+
+::: {.columns}
+::: {.column width="50%"}
+**Classical** (LDA, NMF)
+
+Groups by shared *words*
+:::
+::: {.column width="50%"}
+**Neural** (BERTopic)
+
+Groups by shared *meaning*, even with different words
+:::
+:::
+
+. . .
+
+Trade-off: neural groupings are based on learned vector representations, so the reasoning behind a cluster is less directly readable from the output.
+
+---
+
+## The Five-Step Pipeline
+
+::: {.incremental}
+1. **Embed**: `nomic-embed-text` converts each paragraph to 768 numbers
+2. **Reduce**: UMAP compresses 768 dimensions to 5
+3. **Cluster**: HDBSCAN finds dense neighborhoods — no forced equal-sized groups
+4. **Extract words**: c-TF-IDF finds distinctive words per cluster
+5. **Label**: `llama3.1` writes a human-readable topic name
+:::
+
+::: {.notes}
+Walk through each step slowly. The key conceptual jump is from text to numbers (embedding) — everything else flows from that.
+:::
+
+---
+
+## The Results
+
+7 topics, 2 outlier paragraphs
+
+| Topic | Docs | Speakers |
+|---|---|---|
+| 0 · Transparency and Honesty | 15 | Alex, Ben, Gina, Linda, Otto |
+| 1 · Transparency in Content | 8 | Ben, Linda, Margot, Otto |
+| 2 · Authenticity in Promotion | 7 | Alex, Ben, Gina, Margot |
+| 3 · Responsible Promotion | 7 | Alex, Margot |
+| 4 · Inclusive Representation | 4 | **Linda only** |
+| 5 · Responsible Data Management | 4 | **Gina only** |
+| 6 · Honesty in Reviews | 3 | Alex, Gina, Linda |
+
+---
+
+## Interpretive Questions
+
+Topics 0, 1, and 2 are all transparency-adjacent.
+
+. . .
+
+Are they meaningfully distinct, or does the model separate them on surface differences?
+
+. . .
+
+Topics 4 and 5 each come from only one speaker.
+
+. . .
+
+Is this a genuine thematic difference — or individual vocabulary?
+
+. . .
+
+These questions require close reading. The pipeline surfaces patterns; it does not resolve them.
+
+---
+
+## Exercise {background-color="#ffb81c"}
+
+**Path A**: run the pipeline (Python 3.11 + Ollama)
+
+**Path B**: use prepared results — download CSVs and open HTML visualizations
+
+. . .
+
+Full instructions: [4 · Topic Modeling](instructions/01_simple_explanation.html) and [4b · Exercise](instructions/02_hands_on_exercise.html)
+
+# Reflection {background-color="#003da5" style="color: white;"}
+
+What does each method add?
+
+---
+
+## Across All Four Methods
+
+| Method | Surfaces | Misses |
+|---|---|---|
+| Manual coding | Nuance, context, tone | Scale |
+| Word counting | Vocabulary patterns | Meaning and evaluation |
+| Sentiment analysis | Surface tone distribution | Genre, irony, qualification |
+| Topic modeling | Thematic groupings | How the theme is expressed differently across speakers |
+
+. . .
+
+No single method is sufficient. Each entry point reveals something different about the same data.

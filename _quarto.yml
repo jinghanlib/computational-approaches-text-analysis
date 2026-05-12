@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - instructions/software_qda.qmd
+    - instructions/software_qda_exercise.qmd
+    - instructions/word_counting.qmd
+    - instructions/word_counting_exercise.qmd
+    - instructions/sentiment_analysis.qmd
+    - instructions/01_simple_explanation.qmd
+    - instructions/02_hands_on_exercise.qmd
+    - slides.qmd
+  resources:
+    - data/interviews.csv
+    - outputs/interviews_bertopic/*.csv
+    - outputs/interviews_bertopic/visualizations/*.html
+    - outputs/interviews_sentiment/*.csv
+    - outputs/interviews_sentiment/visualizations/*.html
+
+website:
+  title: "Computational Approaches to Text Analysis"
+  navbar:
+    left:
+      - text: "Overview"
+        href: index.qmd
+      - text: "Workshop"
+        menu:
+          - text: "1 · Software QDA"
+            href: instructions/software_qda.qmd
+          - text: "1b · Hands-On QDA Exercise"
+            href: instructions/software_qda_exercise.qmd
+          - text: "2 · Word Counting"
+            href: instructions/word_counting.qmd
+          - text: "2b · Word Counting Exercise"
+            href: instructions/word_counting_exercise.qmd
+          - text: "3 · Sentiment Analysis"
+            href: instructions/sentiment_analysis.qmd
+          - text: "---"
+          - text: "4 · Topic Modeling"
+            href: instructions/01_simple_explanation.qmd
+          - text: "4b · Topic Modeling Exercise"
+            href: instructions/02_hands_on_exercise.qmd
+      - text: "Slides"
+        href: slides.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: instructions/assets/site.css
+    toc: true
+    toc-depth: 3
+    page-layout: article
+    embed-resources: false

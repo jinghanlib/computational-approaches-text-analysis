@@ -1,0 +1,90 @@
+/* UCR branding for Reveal.js slides */
+
+:root {
+  --ucr-blue: #002E6D;
+  --ucr-gold: #F1AB00;
+  --ucr-light: #f5f7fa;
+}
+
+/* Title slide */
+.reveal .slide-background-content {
+  background-color: var(--ucr-blue);
+}
+
+.reveal .title-slide h1,
+.reveal .title-slide h2,
+.reveal .title-slide p {
+  color: #ffffff;
+}
+
+/* Section divider slides */
+section[data-background-color="#f8f9fa"] h1,
+section[data-background-color="#f8f9fa"] h2 {
+  color: var(--ucr-blue);
+  border-bottom: 3px solid var(--ucr-gold);
+  padding-bottom: 0.3em;
+}
+
+/* Slide headings */
+.reveal h1,
+.reveal h2 {
+  color: var(--ucr-blue);
+  font-weight: 600;
+}
+
+.reveal h3 {
+  color: var(--ucr-blue);
+}
+
+/* Gold accent on h2 underline */
+.reveal h2 {
+  border-bottom: 2px solid var(--ucr-gold);
+  padding-bottom: 0.2em;
+}
+
+/* Links */
+.reveal a {
+  color: var(--ucr-blue);
+  text-decoration: underline;
+}
+
+.reveal a:hover {
+  color: var(--ucr-gold);
+}
+
+/* Tables */
+.reveal table th {
+  background-color: var(--ucr-blue);
+  color: #ffffff;
+}
+
+.reveal table tr:nth-child(even) {
+  background-color: #eef1f7;
+}
+
+/* Slide number */
+.reveal .slide-number {
+  color: var(--ucr-gold);
+  font-size: 0.8em;
+}
+
+/* Strong text */
+.reveal strong {
+  color: var(--ucr-blue);
+}
+
+/* Code blocks */
+.reveal pre code {
+  font-size: 0.75em;
+}
+
+/* UCR Library logo on every slide */
+.reveal .slide-logo {
+  display: block;
+  position: fixed;
+  bottom: 0.6em;
+  right: 0.8em;
+  width: 120px;
+  z-index: 100;
+  opacity: 0.9;
+}

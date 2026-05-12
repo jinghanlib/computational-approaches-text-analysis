@@ -1,0 +1,527 @@
+[
+  {
+    "objectID": "slides.html#workshop-overview",
+    "href": "slides.html#workshop-overview",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "Workshop Overview",
+    "text": "Workshop Overview\nFour methods, one dataset, increasing complexity\n\n\n\nSection\nMethod\nTool\n\n\n\n\n1\nSoftware QDA\nTaguette / QualCoder\n\n\n2\nWord Counting\nVoyant Tools\n\n\n3\nSentiment Analysis\nVADER\n\n\n4\nTopic Modeling\nBERTopic\n\n\n\n\nWelcome everyone. We will move through four methods today, all applied to the same dataset. The goal is not to master each tool but to understand what each approach can and cannot do."
+  },
+  {
+    "objectID": "slides.html#the-dataset",
+    "href": "slides.html#the-dataset",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "The Dataset",
+    "text": "The Dataset\n50 interview paragraphs from six digital influencers\nAlex · Ben · Gina · Linda · Margot · Otto\nTopics: ethics, sponsorship transparency, audience relationships\nSource: Renata Gonçalves Curty (UCSB), zenodo.org/records/18604273\n\nAll four methods use this same dataset. Having a shared dataset lets us compare what each method surfaces and what it misses."
+  },
+  {
+    "objectID": "slides.html#what-is-software-assisted-qda",
+    "href": "slides.html#what-is-software-assisted-qda",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "What Is Software-Assisted QDA?",
+    "text": "What Is Software-Assisted QDA?\nStructures what researchers have always done: read closely, annotate, and organize meaning.\n\nCore functions:\n\nCode: assign labels to passages\nMemo: write interpretive notes\nQuery: search across codes and documents\nVisualize: co-occurrence maps, frequency charts\n\n\n\nThe software does not find themes. It helps you track and retrieve the themes you identify.\n\nEmphasize that QDA software is a tool for organizing human interpretation, not automating it. The analyst still makes every decision."
+  },
+  {
+    "objectID": "slides.html#qda-tools",
+    "href": "slides.html#qda-tools",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "QDA Tools",
+    "text": "QDA Tools\n\n\n\nTool\nType\nAI\nData\n\n\n\n\nATLAS.ti, NVivo, MAXQDA\nCommercial\nCloud-based\nVendor servers\n\n\nQualCoder\nOpen source\nLocal (Ollama)\nYour machine\n\n\nTaguette\nOpen source\nNone\nYour machine\n\n\n\n\nUCR Library has ATLAS.ti access at the STAR Lab — make a reservation before your visit."
+  },
+  {
+    "objectID": "slides.html#ai-assisted-coding",
+    "href": "slides.html#ai-assisted-coding",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "AI-Assisted Coding",
+    "text": "AI-Assisted Coding\nAI can suggest codes, summarize passages, and group themes.\n\nBest practice:\n\nStructure prompts incrementally, one task at a time\nReview every AI suggestion before accepting it\nDocument your prompts and model used\nDe-identify data before sending to any cloud model\nPrefer local models for sensitive transcripts\n\n\nThe key tension is between efficiency and interpretive control. AI can speed up initial coding but introduces the risk of accepting suggestions without critical review."
+  },
+  {
+    "objectID": "slides.html#exercise",
+    "href": "slides.html#exercise",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "Exercise",
+    "text": "Exercise\nIn class: Taguette — runs in the browser, no installation needed\napp.taguette.org\n\nTake-home: QualCoder with the Zenodo demo project\nzenodo.org/records/18604273\n\n\nFull instructions: 1b · Hands-On QDA Exercise"
+  },
+  {
+    "objectID": "slides.html#pre-processing-steps",
+    "href": "slides.html#pre-processing-steps",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "Pre-Processing Steps",
+    "text": "Pre-Processing Steps\nBefore counting, text must be cleaned:\n\nTokenizing: split text into individual words\nNormalizing: lowercase, remove punctuation\nFiltering stop words: remove “the”, “and”, “is”\nLemmatizing: “promoting”, “promotes”, “promoted” → “promote”\n\n\nThese choices directly shape what the analysis surfaces."
+  },
+  {
+    "objectID": "slides.html#what-frequency-reveals-and-conceals",
+    "href": "slides.html#what-frequency-reveals-and-conceals",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "What Frequency Reveals and Conceals",
+    "text": "What Frequency Reveals and Conceals\n\n\nReveals\n\nRecurring concepts\nVocabulary differences across speakers\nOutlier vocabulary\n\n\nMisses\n\nTone and evaluation\nSarcasm, hedging, negation\nContext and sequence\n\n\n\nFrequency is a starting point, not a finding."
+  },
+  {
+    "objectID": "slides.html#voyant-tools",
+    "href": "slides.html#voyant-tools",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "Voyant Tools",
+    "text": "Voyant Tools\nBrowser-based, no installation: voyant-tools.org\n\n\n\nPanel\nWhat it shows\n\n\n\n\nCirrus\nWord cloud of top terms\n\n\nTrends\nFrequency across documents\n\n\nContexts\nKeywords in surrounding sentences\n\n\nCollocates\nWords that consistently appear together"
+  },
+  {
+    "objectID": "slides.html#exercise-1",
+    "href": "slides.html#exercise-1",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "Exercise",
+    "text": "Exercise\nUpload .txt files from zenodo.org/records/18604273\n\n\nReview the top 5–10 words in Cirrus\nCheck Trends: are any words used by only one speaker?\nUse Contexts to read a word in surrounding sentences\nEdit stop words with Define Options — copy and paste words exactly\n\n\n\nFull instructions: 2 · Word Counting and 2b · Exercise"
+  },
+  {
+    "objectID": "slides.html#what-is-sentiment-analysis",
+    "href": "slides.html#what-is-sentiment-analysis",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "What Is Sentiment Analysis?",
+    "text": "What Is Sentiment Analysis?\nAssigns a numerical score: positive, negative, or neutral.\n\nVADER works from a lexicon of pre-scored words. Designed for short, informal social media text.\n\n\n\nScore\nMeaning\n\n\n\n\npositive\nProportion of tokens with positive valence\n\n\nnegative\nProportion of tokens with negative valence\n\n\ncompound\n−1.0 (most negative) to +1.0 (most positive)\n\n\n\n\n\nCompound ≥ +0.05 = positive · ≤ −0.05 = negative · between = neutral"
+  },
+  {
+    "objectID": "slides.html#the-results",
+    "href": "slides.html#the-results",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "The Results",
+    "text": "The Results\n\n48 of 50 paragraphs score as positive\n\n\nCompound scores cluster between +0.70 and +0.98\nAll six speakers have median scores above +0.75"
+  },
+  {
+    "objectID": "slides.html#what-does-this-mean",
+    "href": "slides.html#what-does-this-mean",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "What Does This Mean?",
+    "text": "What Does This Mean?\nVADER reads honest, trust, values, responsible as positive.\nBut interview responses use these words to frame complex situations.\n\nThe tool cannot distinguish between:\n\n“I believe in transparency” (conviction)\n“I always say I believe in transparency” (performative)\n“I believe in transparency, but sometimes it’s difficult” (with reservation)\n\n\n\nThe genre shapes the signal.\n\nThis is the key teaching moment for sentiment analysis. The near-uniform positive result is not about the speakers’ sincerity — it reflects the interview genre, where professional self-presentation calls for positive framing."
+  },
+  {
+    "objectID": "slides.html#what-the-scores-do-reveal",
+    "href": "slides.html#what-the-scores-do-reveal",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "What the Scores Do Reveal",
+    "text": "What the Scores Do Reveal\nEven within a uniformly positive distribution:\n\nBen-003 scores negative — he is describing other influencers’ unethical behavior\nSpeakers with lower averages (Ben, Gina) use more hedged language\nBox plot width shows tone consistency within each speaker\n\n\nFull results: 3 · Sentiment Analysis"
+  },
+  {
+    "objectID": "slides.html#what-is-topic-modeling",
+    "href": "slides.html#what-is-topic-modeling",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "What Is Topic Modeling?",
+    "text": "What Is Topic Modeling?\nGroups documents by shared patterns — without reading each one individually.\n\n\n\nClassical (LDA, NMF)\nGroups by shared words\n\nNeural (BERTopic)\nGroups by shared meaning, even with different words\n\n\n\nTrade-off: neural groupings are based on learned vector representations, so the reasoning behind a cluster is less directly readable from the output."
+  },
+  {
+    "objectID": "slides.html#the-five-step-pipeline",
+    "href": "slides.html#the-five-step-pipeline",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "The Five-Step Pipeline",
+    "text": "The Five-Step Pipeline\n\nEmbed: nomic-embed-text converts each paragraph to 768 numbers\nReduce: UMAP compresses 768 dimensions to 5\nCluster: HDBSCAN finds dense neighborhoods — no forced equal-sized groups\nExtract words: c-TF-IDF finds distinctive words per cluster\nLabel: llama3.1 writes a human-readable topic name\n\n\nWalk through each step slowly. The key conceptual jump is from text to numbers (embedding) — everything else flows from that."
+  },
+  {
+    "objectID": "slides.html#the-results-1",
+    "href": "slides.html#the-results-1",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "The Results",
+    "text": "The Results\n7 topics, 2 outlier paragraphs\n\n\n\nTopic\nDocs\nSpeakers\n\n\n\n\n0 · Transparency and Honesty\n15\nAlex, Ben, Gina, Linda, Otto\n\n\n1 · Transparency in Content\n8\nBen, Linda, Margot, Otto\n\n\n2 · Authenticity in Promotion\n7\nAlex, Ben, Gina, Margot\n\n\n3 · Responsible Promotion\n7\nAlex, Margot\n\n\n4 · Inclusive Representation\n4\nLinda only\n\n\n5 · Responsible Data Management\n4\nGina only\n\n\n6 · Honesty in Reviews\n3\nAlex, Gina, Linda"
+  },
+  {
+    "objectID": "slides.html#interpretive-questions",
+    "href": "slides.html#interpretive-questions",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "Interpretive Questions",
+    "text": "Interpretive Questions\nTopics 0, 1, and 2 are all transparency-adjacent.\n\nAre they meaningfully distinct, or does the model separate them on surface differences?\n\n\nTopics 4 and 5 each come from only one speaker.\n\n\nIs this a genuine thematic difference — or individual vocabulary?\n\n\nThese questions require close reading. The pipeline surfaces patterns; it does not resolve them."
+  },
+  {
+    "objectID": "slides.html#exercise-2",
+    "href": "slides.html#exercise-2",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "Exercise",
+    "text": "Exercise\nPath A: run the pipeline (Python 3.11 + Ollama)\nPath B: use prepared results — download CSVs and open HTML visualizations\n\nFull instructions: 4 · Topic Modeling and 4b · Exercise"
+  },
+  {
+    "objectID": "slides.html#across-all-four-methods",
+    "href": "slides.html#across-all-four-methods",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "Across All Four Methods",
+    "text": "Across All Four Methods\n\n\n\n\n\n\n\n\nMethod\nSurfaces\nMisses\n\n\n\n\nManual coding\nNuance, context, tone\nScale\n\n\nWord counting\nVocabulary patterns\nMeaning and evaluation\n\n\nSentiment analysis\nSurface tone distribution\nGenre, irony, qualification\n\n\nTopic modeling\nThematic groupings\nWithin-topic variation\n\n\n\n\nNo single method is sufficient. Each entry point reveals something different about the same data."
+  },
+  {
+    "objectID": "instructions/01_simple_explanation.html",
+    "href": "instructions/01_simple_explanation.html",
+    "title": "What Is Topic Modeling?",
+    "section": "",
+    "text": "NoteBy the end of this page you will be able to\n\n\n\n\nExplain what neural topic modeling does in plain language\nTrace the five steps from raw text to labeled topic\nRead the results and evaluate whether a topic label makes sense\nExplain why some topics draw from only one speaker and what that means for interpretation"
+  },
+  {
+    "objectID": "instructions/01_simple_explanation.html#the-data-you-will-analyze",
+    "href": "instructions/01_simple_explanation.html#the-data-you-will-analyze",
+    "title": "What Is Topic Modeling?",
+    "section": "The Data You Will Analyze",
+    "text": "The Data You Will Analyze\nThe dataset contains 50 interview paragraphs drawn from transcripts with six digital influencers: Alex, Ben, Gina, Linda, Margot, and Otto. Each person describes their approach to brand partnerships, audience relationships, and ethical responsibilities in their own words. Each paragraph is treated as one document.\n\n\n\nColumn\nWhat it contains\n\n\n\n\ninterview_id\nA unique ID for each paragraph (e.g., ALEX-003)\n\n\ninterviewee\nThe speaker’s first name\n\n\nparagraph_num\nThe paragraph’s position within that interview\n\n\ntext\nThe full text of the paragraph"
+  },
+  {
+    "objectID": "instructions/01_simple_explanation.html#what-is-topic-modeling",
+    "href": "instructions/01_simple_explanation.html#what-is-topic-modeling",
+    "title": "What Is Topic Modeling?",
+    "section": "What Is Topic Modeling?",
+    "text": "What Is Topic Modeling?\nTopic modeling finds structure in a collection of texts without reading each one individually. It groups documents that share similar patterns, either by shared words (classical methods) or by shared meaning (neural methods like the one used here).\nThis project uses BERTopic, a neural topic modeling framework. The key difference from older approaches is in what “similar” means:\n\nClassical topic modeling (e.g., LDA, NMF) groups documents that share distinctive words\nNeural topic modeling (BERTopic) groups documents that share meaning, even if they use different words\n\nBoth are valid approaches. The neural approach is better at capturing paraphrase and implication. The trade-off is that the groupings are based on learned vector representations rather than word counts, so the reasoning behind a cluster is less directly readable from the output."
+  },
+  {
+    "objectID": "instructions/01_simple_explanation.html#the-five-step-pipeline",
+    "href": "instructions/01_simple_explanation.html#the-five-step-pipeline",
+    "title": "What Is Topic Modeling?",
+    "section": "The Five-Step Pipeline",
+    "text": "The Five-Step Pipeline\nThe script runs these steps in sequence:\nStep 1: Embed each paragraph. nomic-embed-text (a local language model running through Ollama) reads each paragraph and converts it into a list of 768 numbers. These numbers represent the paragraph’s meaning as a position in a high-dimensional space. Paragraphs that discuss similar ideas end up close together; paragraphs about different ideas end up far apart.\nStep 2: Reduce dimensions with UMAP. 768 dimensions are hard to cluster. UMAP compresses the positions down to 5 dimensions while preserving the neighborhood structure. Paragraphs that were close in 768 dimensions stay close in 5.\nStep 3: Cluster with HDBSCAN. HDBSCAN finds dense neighborhoods in the 5-dimensional space and calls each neighborhood a topic. Unlike algorithms that force equal-sized groups, HDBSCAN follows the actual density of the data. Paragraphs that do not belong to any dense neighborhood are marked as outliers (topic −1).\nStep 4: Extract top words with c-TF-IDF. For each cluster, c-TF-IDF identifies the words that appear more often in that cluster than across the whole dataset. These are the distinctive words: the ones that make this group different from the others.\nStep 5: Label with llama3.1. The top words and three example passages from each cluster are sent to a local LLM (llama3.1 through Ollama). The model writes a human-readable topic name and a one-sentence description. This label is a suggestion; you should always check it against the top words and examples.\n\n\n\n\n\n\nTipKey terms\n\n\n\nEmbedding: a list of numbers that represents text meaning as a position in high-dimensional space. Two embeddings that are numerically close represent texts with similar meaning.\nUMAP: a dimensionality reduction algorithm that compresses high-dimensional embeddings to a smaller number of dimensions while keeping similar items near each other.\nHDBSCAN: a density-based clustering algorithm. It finds groups by looking for regions where points are unusually close together. It does not force a fixed number of equally-sized clusters.\nc-TF-IDF: class-level TF-IDF. It finds words that are distinctive for a cluster relative to the full dataset.\nOutlier topic (−1): paragraphs HDBSCAN could not assign to any dense cluster. A small number of outliers is normal and expected."
+  },
+  {
+    "objectID": "instructions/01_simple_explanation.html#how-to-read-the-topic-review-table",
+    "href": "instructions/01_simple_explanation.html#how-to-read-the-topic-review-table",
+    "title": "What Is Topic Modeling?",
+    "section": "How to Read the Topic Review Table",
+    "text": "How to Read the Topic Review Table\nStart with topic_review_table.csv. Open it in Excel or Google Sheets.\n\n\n\n\n\n\n\nColumn\nWhat to look for\n\n\n\n\ntopic_label\nThe name llama3.1 suggested — treat it as a starting point\n\n\ndocuments\nHow many paragraphs were assigned to this topic\n\n\ntop_words\nThe distinctive words from c-TF-IDF — the real evidence for the label\n\n\ninterviewees\nWhich speakers contributed paragraphs to this topic\n\n\nexample_ids\nParagraph IDs of the strongest matches\n\n\nexample_text\nA short excerpt to help you judge whether the label fits\n\n\n\n\n\n\n\n\n\nTipHow to check a label\n\n\n\n\nRead the top words. Do they form a coherent idea, or do unrelated words appear together?\nRead the example texts. Does the label describe them accurately?\nCheck the interviewees. If a topic draws from only one speaker, ask whether it reflects a genuine theme or that person’s distinctive vocabulary.\nIf the label is wrong, rewrite it based on what you actually see."
+  },
+  {
+    "objectID": "instructions/01_simple_explanation.html#prepared-results",
+    "href": "instructions/01_simple_explanation.html#prepared-results",
+    "title": "What Is Topic Modeling?",
+    "section": "Prepared Results",
+    "text": "Prepared Results\n\n  Download topic review table\n  Download LLM labels\n  Download row assignments\n\n\nTop Words per Topic\nEach bar shows the most distinctive words for one topic. The length of each bar is the c-TF-IDF score: how distinctive that word is for this topic relative to all others. Read the words carefully; do the top words for each topic tell a coherent story, or do some seem mismatched?\n\nThe hover score is a c-TF-IDF weight. It measures how distinctive that word is for this topic relative to all others. The number has no standalone meaning; what matters is which words score highest within each topic, not the absolute value.\n\n\nTopic Map\nThis chart places each topic as a circle in 2D space. Topics that are close together have more similar vocabularies. The size of each circle represents the number of paragraphs in that topic. Hover over each circle to see its label and top words.\n\n\n\nDocument Map\nEach dot is one paragraph, positioned in 2D by the text embeddings. Dots of the same color belong to the same topic. Grey dots are outliers. Hover over any dot to read the paragraph text and see which topic it was assigned to."
+  },
+  {
+    "objectID": "instructions/01_simple_explanation.html#what-the-results-show",
+    "href": "instructions/01_simple_explanation.html#what-the-results-show",
+    "title": "What Is Topic Modeling?",
+    "section": "What the Results Show",
+    "text": "What the Results Show\n\n\n\n\n\n\nImportantReading the topic distribution\n\n\n\nThe model found 7 topics and 2 outlier paragraphs. The largest topic (15 of 50 paragraphs) covers transparency and honesty across five of the six speakers. Two smaller topics draw from only one speaker each: Topic 4 (Inclusive Representation, Linda) and Topic 5 (Responsible Data Management, Gina).\nThese single-speaker topics raise an interpretive question: do they reflect genuine thematic differences in what those speakers discuss, or do they reflect individual vocabulary patterns that the model grouped separately?\nTopics 0, 1, and 2 are all transparency-adjacent. The model separated them, but they share significant vocabulary. This is worth examining: are these meaningfully distinct themes, or variations on the same idea that a different parameter setting might merge?"
+  },
+  {
+    "objectID": "instructions/01_simple_explanation.html#where-human-interpretation-takes-over",
+    "href": "instructions/01_simple_explanation.html#where-human-interpretation-takes-over",
+    "title": "What Is Topic Modeling?",
+    "section": "Where Human Interpretation Takes Over",
+    "text": "Where Human Interpretation Takes Over\nEvery step in the pipeline involved a human decision:\n\nchoosing which interview questions to ask\ndeciding to split the transcript into paragraphs rather than sentences or whole interviews\nchoosing which LLM to use for labeling\ndeciding whether to accept, revise, or reject a generated label\ndeciding whether adjacent topics should be merged or kept separate\nreturning to specific passages for close reading\n\nThe pipeline organizes and surfaces patterns. Explaining what those patterns mean and why they matter for a research question is work that only a human reader can do."
+  },
+  {
+    "objectID": "instructions/word_counting_exercise.html",
+    "href": "instructions/word_counting_exercise.html",
+    "title": "2b · Word Counting Exercise",
+    "section": "",
+    "text": "NoteBy the end of this exercise you will have\n\n\n\n\nUploaded the interview transcripts to Voyant Tools\nIdentified the most frequent words and what they suggest\nRead words in context and adjusted the stop word list\nNoted at least one pattern worth investigating further"
+  },
+  {
+    "objectID": "instructions/word_counting_exercise.html#get-the-data",
+    "href": "instructions/word_counting_exercise.html#get-the-data",
+    "title": "2b · Word Counting Exercise",
+    "section": "Get the Data",
+    "text": "Get the Data\nDownload the original interview transcripts from the Zenodo archive. You will upload the .txt files directly into Voyant.\n\n  Download from Zenodo"
+  },
+  {
+    "objectID": "instructions/word_counting_exercise.html#step-1-upload-the-data",
+    "href": "instructions/word_counting_exercise.html#step-1-upload-the-data",
+    "title": "2b · Word Counting Exercise",
+    "section": "Step 1 — Upload the Data",
+    "text": "Step 1 — Upload the Data\nGo to voyant-tools.org, click Upload, and select one or more .txt files from the Zenodo archive.\nYou can upload one file at a time or select all six to analyze the interviews together."
+  },
+  {
+    "objectID": "instructions/word_counting_exercise.html#step-2-review-the-cirrus-word-cloud",
+    "href": "instructions/word_counting_exercise.html#step-2-review-the-cirrus-word-cloud",
+    "title": "2b · Word Counting Exercise",
+    "section": "Step 2 — Review the Cirrus Word Cloud",
+    "text": "Step 2 — Review the Cirrus Word Cloud\nLook at the top 5–10 most frequent words.\n\nWhat themes do they suggest?\nAre there words that seem surprising given the interview topic?"
+  },
+  {
+    "objectID": "instructions/word_counting_exercise.html#step-3-check-the-trends-panel",
+    "href": "instructions/word_counting_exercise.html#step-3-check-the-trends-panel",
+    "title": "2b · Word Counting Exercise",
+    "section": "Step 3 — Check the Trends Panel",
+    "text": "Step 3 — Check the Trends Panel\nSelect three or four words and look at how they are distributed across the six interviews.\n\nAre any words used predominantly by one or two speakers?\nDo any words appear only in one document?"
+  },
+  {
+    "objectID": "instructions/word_counting_exercise.html#step-4-use-contexts-for-one-word",
+    "href": "instructions/word_counting_exercise.html#step-4-use-contexts-for-one-word",
+    "title": "2b · Word Counting Exercise",
+    "section": "Step 4 — Use Contexts for One Word",
+    "text": "Step 4 — Use Contexts for One Word\nClick on a word in the cloud to open the Contexts view. Read 5–6 instances in their surrounding sentences.\n\nDoes the word always appear in the same type of sentence?\nDoes any speaker use it differently from the others?"
+  },
+  {
+    "objectID": "instructions/word_counting_exercise.html#step-5-adjust-stop-words",
+    "href": "instructions/word_counting_exercise.html#step-5-adjust-stop-words",
+    "title": "2b · Word Counting Exercise",
+    "section": "Step 5 — Adjust Stop Words",
+    "text": "Step 5 — Adjust Stop Words\nIn the Cirrus panel, click Define Options to edit the stop word list. Copy and paste words exactly as they appear in the cloud to add them. The list will be sorted alphabetically after you save.\nTry removing conversational words like like, really, just, think, or also. How does the word cloud change?"
+  },
+  {
+    "objectID": "instructions/word_counting_exercise.html#step-6-discuss",
+    "href": "instructions/word_counting_exercise.html#step-6-discuss",
+    "title": "2b · Word Counting Exercise",
+    "section": "Step 6 — Discuss",
+    "text": "Step 6 — Discuss\n\nWhat did the word cloud confirm that you already expected?\nWhat surprised you?\nWhich patterns would you want to investigate further with a richer method?"
+  },
+  {
+    "objectID": "instructions/software_qda_exercise.html",
+    "href": "instructions/software_qda_exercise.html",
+    "title": "1b · Hands-On QDA Exercise",
+    "section": "",
+    "text": "NoteBy the end of this exercise you will be able to\n\n\n\n\nImport a text document into Taguette and create a codebook\nHighlight and tag passages from the interview data\nRetrieve all passages sharing a code and compare across documents"
+  },
+  {
+    "objectID": "instructions/software_qda_exercise.html#why-taguette",
+    "href": "instructions/software_qda_exercise.html#why-taguette",
+    "title": "1b · Hands-On QDA Exercise",
+    "section": "Why Taguette?",
+    "text": "Why Taguette?\nTaguette is free, open-source, and runs entirely in your browser — nothing to install. It covers the core QDA workflow: import documents, create codes, highlight passages, and export results. It is a good starting point before moving to a full-featured tool like QualCoder or ATLAS.ti.\nOpen Taguette at: app.taguette.org. New to Taguette? See the getting started guide for a walkthrough of the basic workflow.\n\n\n\n\n\n\nTipLocal vs. cloud\n\n\n\nThe hosted version at app.taguette.org is the fastest way to start. If you are working with sensitive data, use the local desktop version — your data stays on your computer."
+  },
+  {
+    "objectID": "instructions/software_qda_exercise.html#the-data",
+    "href": "instructions/software_qda_exercise.html#the-data",
+    "title": "1b · Hands-On QDA Exercise",
+    "section": "The Data",
+    "text": "The Data\nDownload the original interview transcripts from the Zenodo archive. The ZIP contains plain text files for each interviewee that Taguette can import directly.\n\n  Download from Zenodo\n\nUnzip the archive and use the individual transcript files. For this exercise, import one or two to keep things manageable in class."
+  },
+  {
+    "objectID": "instructions/software_qda_exercise.html#exercise",
+    "href": "instructions/software_qda_exercise.html#exercise",
+    "title": "1b · Hands-On QDA Exercise",
+    "section": "Exercise",
+    "text": "Exercise\nStep 1 — Create a project. Go to app.taguette.org. Click New Project, give it a name (e.g., Influencer Ethics), and click Create.\nStep 2 — Import a document. Click Add Document and upload one of the .txt transcript files from the Zenodo archive. Use the interviewee’s name as the document name.\nStep 3 — Create codes. In the left panel, click Add Tag to create your codebook. Start with 3–4 codes. For example:\n\n\n\n\n\n\n\nCode\nDescription\n\n\n\n\ndisclosure\nExplicit mention of labeling sponsored content\n\n\nauthenticity\nClaims about genuine belief in promoted products\n\n\ncommunity\nAudience trust, accountability, mutual responsibility\n\n\nsustainability\nReferences to environmental or ethical responsibility\n\n\n\nStep 4 — Highlight and tag. Open your document. Select a passage, then click a tag to apply it. A passage can receive more than one tag.\nStep 5 — Review your tags. Click on a tag name in the left panel to see all passages with that code collected in one view.\nStep 6 — Discuss.\n\nWhich passages were straightforward to code? Which required judgment?\nDid any passage fit two codes equally well?\nHow does the act of highlighting and labeling change how you read the text?"
+  },
+  {
+    "objectID": "instructions/software_qda_exercise.html#from-manual-coding-to-computational-methods",
+    "href": "instructions/software_qda_exercise.html#from-manual-coding-to-computational-methods",
+    "title": "1b · Hands-On QDA Exercise",
+    "section": "From Manual Coding to Computational Methods",
+    "text": "From Manual Coding to Computational Methods\nManual coding forces you to make interpretive decisions one passage at a time. As you move through the next sections — word counting, sentiment analysis, and topic modeling — keep these questions in mind:\n\nDoes the computational method surface the same themes you identified by hand?\nWhat does it miss that you noticed?\nWhat does it find that you did not?\n\n\n\n\n\n\n\nTipContinue at home with QualCoder\n\n\n\nTaguette covers the basics. For a fuller workflow — hierarchical codebooks, memos, reports, intercoder agreement, and optional AI assist — try QualCoder after the workshop.\nA setup guide and a ready-to-use demo project built on this same dataset are available at zenodo.org/records/18604273."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "",
+    "text": "This workshop introduces computational tools for analyzing qualitative data. It is designed for researchers and students with no prior coding experience. You will move through four methods, from manual software-assisted coding to fully automated topic modeling, and practice deciding when each approach is appropriate for a research question."
+  },
+  {
+    "objectID": "index.html#the-dataset",
+    "href": "index.html#the-dataset",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "The Dataset",
+    "text": "The Dataset\nAll four exercises use the same dataset: 50 interview paragraphs from six digital influencers (Alex, Ben, Gina, Linda, Margot, and Otto) discussing ethics, sponsorship, and audience relationships. The interviews were originally published by Renata Gonçalves Curty (UCSB) as part of a UC Love Data Week instructional archive and are available at zenodo.org/records/18604273. The version used here has been reformatted as a CSV for use across all workshop exercises.\n\n  Download interview data"
+  },
+  {
+    "objectID": "index.html#workshop-arc",
+    "href": "index.html#workshop-arc",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "Workshop Arc",
+    "text": "Workshop Arc\n\n\n\n1 · Software QDA\nOverview of qualitative data analysis (QDA) tools and manual coding concepts. In-class exercise with Taguette; take-home practice with QualCoder using a pre-built demo project.\nOpen →\n\n\n\n\n2 · Word Counting\nThe simplest computational method: count how often words appear. Use Voyant Tools to explore word frequencies in the interview data and consider what frequency reveals and what it conceals.\nOpen →\n\n\n\n\n3 · Sentiment Analysis\nVADER assigns each paragraph a score from −1 to +1. Explore the pre-computed results and consider what the distribution tells you and what it leaves out.\nOpen →\n\n\n\n\n4 · Topic Modeling\nBERTopic groups paragraphs by meaning using text embeddings. Explore the output and interpret what the topics suggest about the interview data.\nOpen →"
+  },
+  {
+    "objectID": "instructions/software_qda.html",
+    "href": "instructions/software_qda.html",
+    "title": "1 · Software QDA",
+    "section": "",
+    "text": "NoteBy the end of this section you will be able to\n\n\n\n\nExplain what software-assisted QDA does and when to use it\nCreate a simple codebook and apply codes to interview text in QualCoder\nDescribe how manual coding relates to — and differs from — the computational methods that follow"
+  },
+  {
+    "objectID": "instructions/software_qda.html#what-is-software-assisted-qda",
+    "href": "instructions/software_qda.html#what-is-software-assisted-qda",
+    "title": "1 · Software QDA",
+    "section": "What Is Software-Assisted QDA?",
+    "text": "What Is Software-Assisted QDA?\nQualitative data analysis software gives you a structured environment for doing what qualitative researchers have always done: read closely, annotate, and organize meaning. The difference from paper and highlighters is scale and structure. With QDA software you can:\n\nCode — assign labels to passages and retrieve all passages sharing a code\nMemo — write interpretive notes attached to data or codes\nQuery — search across codes, documents, and annotations\nVisualize — generate code co-occurrence maps and frequency charts\n\nThe analysis is still human-driven. The software does not find themes; it helps you track and retrieve the themes you identify.\n\n\n\n\n\n\nTipWhen to use software-assisted QDA\n\n\n\n\nYour dataset is small enough to read closely (dozens to low hundreds of documents)\nYour research question requires careful attention to context, tone, and nuance\nYou are working collaboratively and need shared codebooks\nYour data includes multimedia (audio, video, images)\nYou want to document your analytical process for transparency\n\n\n\nMost QDA tools support a common set of data types:\n\n\n\n\n\n\n\nData type\nExamples\n\n\n\n\nPlain text\nInterview transcripts, field notes, open-ended survey responses\n\n\nDocuments\nPDFs, Word files\n\n\nSpreadsheets\nCSV exports from survey platforms\n\n\nImages\nScreenshots, photographs\n\n\nAudio / Video\nRecorded interviews, social media clips"
+  },
+  {
+    "objectID": "instructions/software_qda.html#qda-tools",
+    "href": "instructions/software_qda.html#qda-tools",
+    "title": "1 · Software QDA",
+    "section": "QDA Tools",
+    "text": "QDA Tools\n\nQualCoder\nQualCoder is free, open-source, and functionally comparable to commercial alternatives. It runs locally on your computer — no subscription, no cloud account, and full control over your data.\n\n\n\nFeature\nDescription\n\n\n\n\nText coding\nHighlight passages and assign codes\n\n\nCodebook\nCreate and organize a hierarchical codebook\n\n\nCode retrieval\nPull all passages sharing a code across documents\n\n\nMemos\nAttach interpretive notes to codes or passages\n\n\nReports\nCode frequency, co-occurrence, intercoder agreement\n\n\nAI assist\nOptional local AI coding suggestions via Ollama\n\n\n\n\n\n\n\n\n\nTipInstallation and demo project\n\n\n\nA step-by-step setup guide and a ready-to-use demo project are available on Zenodo:\nzenodo.org/records/18604273\nThe archive includes:\n\nQualCoder-AI-setup.pdf — installation instructions and optional local AI configuration (Ollama + Llama 3.1)\nucldw2026-influencers-ai-demo.zip — a complete QualCoder project built on the same influencer interview dataset used in this workshop, with a pre-established codebook, memos, and AI prompts\n\nDownload the demo project to explore a fully coded project before building your own.\n\n\n\n\nATLAS.ti\nATLAS.ti is one of the most widely used commercial QDA platforms. UCR Library holds a license accessible at the STAR Lab using the public account. Note that a desktop session and a web session count as two separate users.\nATLAS.ti covers the same core functions as QualCoder with a more polished interface.\n\n\n\n\n\n\nTipUsing the STAR Lab\n\n\n\nThe STAR Lab is a specialty computing lab in the UCR Library with licensed software for research and data analysis. Make a reservation before your visit.\n\n\n\n\n\n\n\n\nTipOther tools worth knowing\n\n\n\n\nNVivo — available at the STAR Lab; note that UCR Library’s license is on an older version that cannot be updated\nMAXQDA — popular in social science; integrates with third-party LLMs (Claude, Gemini)\nTaguette — free, open-source, simpler than QualCoder; good for basic text coding"
+  },
+  {
+    "objectID": "instructions/software_qda.html#ai-assisted-coding",
+    "href": "instructions/software_qda.html#ai-assisted-coding",
+    "title": "1 · Software QDA",
+    "section": "AI-Assisted Coding",
+    "text": "AI-Assisted Coding\nAll major QDA platforms now offer some form of AI assistance. The key distinction is where the AI runs and who controls the process.\n\n\n\n\n\n\n\n\n\nTool\nType\nAI\nData\n\n\n\n\nATLAS.ti, NVivo, MAXQDA\nCommercial\nCloud-based LLMs\nVendor-managed; data does not leave the platform\n\n\nQualCoder\nOpen source\nLocal models via Ollama\nStays on your machine; fully offline option\n\n\n\n\n\n\n\n\n\nImportantAI in qualitative research: a human-first principle\n\n\n\nAI tools can suggest codes, summarize passages, and group themes, but they cannot replace interpretive judgment. Current best practice treats the AI as a support tool, not a decision-maker:\n\nStructure prompts incrementally, one task at a time\nReview every AI suggestion before accepting it\nDocument your prompts, model used, and any decisions made\nDe-identify data before sending it to any cloud-based model\nPrefer local models (Ollama) when working with sensitive transcripts\n\nThe goal is human-in-the-loop analysis, not automated coding."
+  },
+  {
+    "objectID": "instructions/software_qda.html#in-class-exercise",
+    "href": "instructions/software_qda.html#in-class-exercise",
+    "title": "1 · Software QDA",
+    "section": "In-Class Exercise",
+    "text": "In-Class Exercise\nThe in-class exercise uses Taguette — a browser-based tool that requires no installation and gets you coding in under two minutes.\n\n  Open hands-on exercise →"
+  },
+  {
+    "objectID": "instructions/software_qda.html#take-home-explore-qualcoder",
+    "href": "instructions/software_qda.html#take-home-explore-qualcoder",
+    "title": "1 · Software QDA",
+    "section": "Take-Home: Explore QualCoder",
+    "text": "Take-Home: Explore QualCoder\nAfter the workshop, try the full QualCoder workflow using the Zenodo archive at zenodo.org/records/18604273.\nStep 1 — Install QualCoder. Download and follow the QualCoder-AI-setup.pdf in the archive. It walks you through installation on Mac, Windows, and Linux, and includes optional steps to enable the local AI function (Ollama + Llama 3.1).\nStep 2 — Open the demo project. Download and unzip ucldw2026-influencers-ai-demo.zip from the archive. Open QualCoder and load this project. It includes a codebook, project memos, and the AI prompts used during analysis.\nStep 3 — Build on the demo project. Using the existing codebook as a starting point, add new codes, apply them to additional paragraphs, or revise existing ones. A paragraph can receive more than one code.\nStep 4 — Reflect.\n\nWhich passages were easy to code? Which required judgment?\nDid any paragraph seem to fit two codes equally well?\nDid you add codes that were not in the original codebook?"
+  },
+  {
+    "objectID": "instructions/software_qda.html#reflection-and-next-steps",
+    "href": "instructions/software_qda.html#reflection-and-next-steps",
+    "title": "1 · Software QDA",
+    "section": "Reflection and Next Steps",
+    "text": "Reflection and Next Steps\nWhen you move to computational methods in the next sections, keep these questions in mind:\n\nDoes the topic model find the same themes you identified by hand?\nDoes it find anything you missed?\nWhat does it miss that you caught?\n\nManual coding and computational modeling are not competitors. They are different entry points into the same data, each surfacing different aspects of the text."
+  },
+  {
+    "objectID": "instructions/software_qda.html#additional-resources",
+    "href": "instructions/software_qda.html#additional-resources",
+    "title": "1 · Software QDA",
+    "section": "Additional Resources",
+    "text": "Additional Resources\nQualCoder\n\nInstallation and demo project — setup guide + pre-built influencer interview project (Zenodo)\nQualCoder releases — download the latest version\nLibrary Carpentry: Qualitative Data Analysis with QualCoder — covers case analysis, thematic analysis, and framework matrices\n\nATLAS.ti\n\nATLAS.ti trainings — live and on-demand sessions from the developer\nATLAS.ti research guides — step-by-step guides by feature and method\nATLAS.ti video tutorials — feature walkthroughs and demos\nSTAR Lab — access ATLAS.ti using the public account; make a reservation before your visit\n\nQDA Tools — General\n\nTemple University Libraries: Qualitative Data Analysis and Tools — tool comparisons, getting-started guides\nNYU Libraries: Qualitative Data Analysis — guides by method and tool\n\nAI in Qualitative Research\n\nCritical Integration of GenAI in Qualitative Analysis — prompting strategies and ethical considerations for AI-assisted qualitative coding (UC Love Data Week 2026)\nQualCoder wiki — documentation, feature notes, and community guides"
+  },
+  {
+    "objectID": "instructions/word_counting.html",
+    "href": "instructions/word_counting.html",
+    "title": "2 · Word Counting",
+    "section": "",
+    "text": "NoteBy the end of this section you will be able to\n\n\n\n\nExplain what word frequency analysis can and cannot tell you about a text\nUse Voyant Tools to explore the most common words in the interview dataset\nIdentify what textual patterns word counts reveal and what they hide"
+  },
+  {
+    "objectID": "instructions/word_counting.html#data-cleaning-and-pre-processing",
+    "href": "instructions/word_counting.html#data-cleaning-and-pre-processing",
+    "title": "2 · Word Counting",
+    "section": "Data Cleaning and Pre-Processing",
+    "text": "Data Cleaning and Pre-Processing\nBefore any counting happens, raw text needs to be cleaned and standardized. The choices made at this stage directly shape what the analysis surfaces.\nTypical pre-processing steps:\n\nTokenizing: splitting the text into individual words; each word is called a token\nNormalizing: converting to lowercase, removing punctuation and numbers\nFiltering stop words: removing high-frequency function words that carry little meaning on their own, such as “the”, “and”, “is”\nLemmatizing: reducing words to their base form so variants count together\n\n\n\n\n\n\n\nTipKey terms\n\n\n\nStop words: function words (articles, prepositions, conjunctions) that appear in nearly every document regardless of topic. Removing them lets more content-bearing words surface. The choice of stop word list affects results: “like” and “just” may need to be added manually for conversational text.\nLemmatization: grouping word variants under a shared base form. “promoting”, “promotes”, and “promoted” all become “promote”. Without lemmatization, these count separately and each appears less frequent than it actually is."
+  },
+  {
+    "objectID": "instructions/word_counting.html#what-frequency-reveals-and-conceals",
+    "href": "instructions/word_counting.html#what-frequency-reveals-and-conceals",
+    "title": "2 · Word Counting",
+    "section": "What Frequency Reveals and Conceals",
+    "text": "What Frequency Reveals and Conceals\n\n\n\n\n\n\n\nWhat frequency can show\nWhat it misses\n\n\n\n\nWhich concepts recur most\nTone and evaluation (good vs. bad product)\n\n\nHow vocabulary differs across speakers\nSarcasm, hedging, negation\n\n\nWhether certain topics cluster together\nContext and sequence\n\n\nWords used by only one speaker\nWhat speakers imply but don’t say\n\n\n\nA word that appears 15 times in one interview and once in another is worth a closer look. But frequency alone cannot tell you why it appears or what the speaker thinks about it."
+  },
+  {
+    "objectID": "instructions/word_counting.html#voyant-tools",
+    "href": "instructions/word_counting.html#voyant-tools",
+    "title": "2 · Word Counting",
+    "section": "Voyant Tools",
+    "text": "Voyant Tools\nVoyant Tools is a browser-based text analysis environment. It requires no installation; you upload text and get immediate visualizations.\nOpen it at: voyant-tools.org\nWhat Voyant provides:\n\n\n\n\n\n\n\nTool\nWhat it shows\n\n\n\n\nCirrus (word cloud)\nMost frequent words at a glance\n\n\nTrends\nHow word frequency changes across documents\n\n\nSummary\nTop terms, document lengths, vocabulary density\n\n\nContexts\nKeywords in context (KWIC): words shown in their surrounding sentences\n\n\nCollocates\nWords that consistently appear in the same context as a target word"
+  },
+  {
+    "objectID": "instructions/word_counting.html#what-word-counting-adds",
+    "href": "instructions/word_counting.html#what-word-counting-adds",
+    "title": "2 · Word Counting",
+    "section": "What Word Counting Adds",
+    "text": "What Word Counting Adds\nFrequency analysis works best as a starting point. It helps you:\n\nIdentify vocabulary worth tracing across speakers\nNotice imbalances in who uses what language\nGenerate hypotheses before running more complex analyses\n\nWhen you move to sentiment analysis and topic modeling, keep the frequency results in mind. Do the dominant topics match the most frequent words? Do speakers with distinctive vocabulary also cluster into distinct topics?\nFull instructions: 2b · Word Counting Exercise"
+  },
+  {
+    "objectID": "instructions/sentiment_analysis.html",
+    "href": "instructions/sentiment_analysis.html",
+    "title": "3 · Sentiment Analysis",
+    "section": "",
+    "text": "NoteBy the end of this section you will be able to\n\n\n\n\nExplain how rule-based sentiment analysis works\nInterpret VADER sentiment scores applied to the interview dataset\nCritically evaluate what the results reveal and what they miss"
+  },
+  {
+    "objectID": "instructions/sentiment_analysis.html#what-is-sentiment-analysis",
+    "href": "instructions/sentiment_analysis.html#what-is-sentiment-analysis",
+    "title": "3 · Sentiment Analysis",
+    "section": "What Is Sentiment Analysis?",
+    "text": "What Is Sentiment Analysis?\nSentiment analysis assigns a numerical score to text to indicate whether the language is positive, negative, or neutral. It does not read for meaning; it measures the surface tone of words.\nRule-based sentiment tools work from a lexicon: a dictionary of words pre-scored for emotional valence. When the tool sees a word like honest or trust, it adds to the positive score. When it sees mislead or frustrated, it adds to the negative score. The final score is a sum of these signals, normalized to a standard scale.\n\n\n\n\n\n\nTipVADER\n\n\n\nVADER (Valence Aware Dictionary and sEntiment Reasoner) was designed for short, informal social media text. It handles:\n\nCapitalization (GREAT scores higher than great)\nPunctuation (great!!! scores higher than great)\nDegree modifiers (very good &gt; good, barely good &lt; good)\nNegation (not good flips the polarity)\nCommon slang and emoji\n\nVADER returns four scores per text:\n\n\n\n\n\n\n\nScore\nMeaning\n\n\n\n\npositive\nProportion of tokens with positive valence\n\n\nnegative\nProportion of tokens with negative valence\n\n\nneutral\nProportion of neutral tokens\n\n\ncompound\nOverall score, normalized to −1.0 (most negative) to +1.0 (most positive)\n\n\n\nA compound score ≥ +0.05 is classified positive; ≤ −0.05 is negative; between is neutral."
+  },
+  {
+    "objectID": "instructions/sentiment_analysis.html#results",
+    "href": "instructions/sentiment_analysis.html#results",
+    "title": "3 · Sentiment Analysis",
+    "section": "Results",
+    "text": "Results\nThe scores below were computed on all 50 interview paragraphs. Download the full results to explore individual scores.\n\n  Download sentiment scores\n\n\nDistribution of Compound Scores\n\n48 of 50 paragraphs score as positive. Compound scores cluster between +0.70 and +0.98.\n\n\nScores by Interviewee\n\nAll six speakers have median compound scores above +0.75. The spread within each speaker is narrow. There is almost no variation across the dataset."
+  },
+  {
+    "objectID": "instructions/sentiment_analysis.html#interpreting-the-results",
+    "href": "instructions/sentiment_analysis.html#interpreting-the-results",
+    "title": "3 · Sentiment Analysis",
+    "section": "Interpreting the Results",
+    "text": "Interpreting the Results\n\n\n\n\n\n\nImportantThe central interpretive question\n\n\n\nIf 48 of 50 paragraphs score as positive, what does that actually mean?\nIt could mean the speakers are genuinely positive. But it more likely reveals something about genre. These are interview responses in which influencers are explaining and justifying their professional practices. That genre calls for positive, confident language, even when describing a problem.\nVADER was trained on tweets and product reviews, where positive/negative signals are direct and intentional. Interview responses tend to use positively valenced words (honest, trust, values, responsible) to frame what are often complex or ambiguous situations.\nThe tool cannot distinguish between: - “I believe in transparency” (genuine conviction) - “I always say I believe in transparency” (performative) - “I believe in transparency, but sometimes it’s difficult” (with reservation)\nAll three would score very similarly.\n\n\n\nWhat the scores do reveal\nEven within a uniformly positive distribution, variation matters:\n\nBen-003 is one of the only negative-scoring paragraphs. Read it: Ben is describing other influencers’ unethical behavior. The negative score tracks the critique.\nSpeakers with lower averages (Ben, Gina) tend to use more hedged or critical language than those at the top (Alex, Otto).\nThe width of the box plots for each speaker indicates how consistent their tone is across their responses."
+  },
+  {
+    "objectID": "instructions/sentiment_analysis.html#discussion",
+    "href": "instructions/sentiment_analysis.html#discussion",
+    "title": "3 · Sentiment Analysis",
+    "section": "Discussion",
+    "text": "Discussion\n\nWhy might professional interview language consistently score as positive even when the content involves criticism?\nDoes high sentiment mean the speaker is being sincere or polished?\nWhat kind of text would VADER analyze more reliably than these interviews?\nIf you used a different sentiment tool trained on formal professional speech, would you expect the results to differ? In what direction?"
+  },
+  {
+    "objectID": "instructions/sentiment_analysis.html#what-sentiment-analysis-adds",
+    "href": "instructions/sentiment_analysis.html#what-sentiment-analysis-adds",
+    "title": "3 · Sentiment Analysis",
+    "section": "What Sentiment Analysis Adds",
+    "text": "What Sentiment Analysis Adds\nSentiment analysis is most useful when:\n\nYou have a large corpus where manual reading is impractical\nThe text comes from genres where sentiment is direct (social media, reviews, comment sections)\nYou are comparing sentiment between categories (speakers, time periods, platforms)\n\nFor interview data, the near-uniform positive result tells you something important: the genre shapes the signal. Any computational method applied to interview text will run into the same issue in some form.\nAs you move to topic modeling, consider whether the method reveals something that sentiment cannot, or whether it runs into the same genre constraints."
+  },
+  {
+    "objectID": "instructions/02_hands_on_exercise.html",
+    "href": "instructions/02_hands_on_exercise.html",
+    "title": "4b · Topic Modeling Exercise",
+    "section": "",
+    "text": "NoteBy the end of this exercise you will have\n\n\n\n\nEmbeddings generated for all 50 interview paragraphs using nomic-embed-text\nA set of topics labeled by llama3.1\nA topic review table and four interactive visualizations\nA short written interpretation of one topic\nThis exercise has two paths. Choose the one that fits where you are right now.\nPath A: Run the pipeline. Requires Python 3.11, Ollama, and two local models. You generate your own results from scratch.\nPath B: Use reference results. Skip all setup and work directly with the prepared outputs. You complete the same interpretation task."
+  },
+  {
+    "objectID": "instructions/02_hands_on_exercise.html#step-1-get-the-project-files",
+    "href": "instructions/02_hands_on_exercise.html#step-1-get-the-project-files",
+    "title": "4b · Topic Modeling Exercise",
+    "section": "Step 1 — Get the Project Files",
+    "text": "Step 1 — Get the Project Files\nClone the repository to your computer:\ngit clone https://github.com/jinghanlib/computational-approaches-text-analysis.git\ncd computational-approaches-text-analysis\nIf you do not have git installed, download the ZIP from the repository page and unzip it.\nThen open data/interviews.csv in Excel or Google Sheets. Before running anything, read 5–8 paragraphs and write down the themes you expect to see. You will compare this prediction to the model output later."
+  },
+  {
+    "objectID": "instructions/02_hands_on_exercise.html#step-2-install-ollama-and-pull-the-models-path-a-only",
+    "href": "instructions/02_hands_on_exercise.html#step-2-install-ollama-and-pull-the-models-path-a-only",
+    "title": "4b · Topic Modeling Exercise",
+    "section": "Step 2 — Install Ollama and Pull the Models (Path A only)",
+    "text": "Step 2 — Install Ollama and Pull the Models (Path A only)\nThe pipeline uses two local models that run through Ollama. No internet connection is required once they are downloaded.\n1. Download and install Ollama. Go to ollama.com and click the download button for your operating system.\nMac: Open the downloaded .dmg file, drag Ollama to your Applications folder, then launch it from Applications. The Ollama icon will appear in the menu bar.\nWindows: Run the downloaded .exe installer and follow the prompts. Ollama will start automatically and appear as an icon in the system tray (bottom right of the taskbar). If it does not start automatically, search for “Ollama” in the Start menu and open it.\n2. Open a terminal and pull the models. Once Ollama is running, open a terminal. Location does not matter for this step.\nMac: Open the Terminal app from Applications → Utilities → Terminal.\nWindows: Press Windows key + R, type cmd, and press Enter to open Command Prompt. Alternatively, search for “PowerShell” in the Start menu and open it.\nThen run these two commands, one at a time. Wait for each to finish before running the next:\nollama pull nomic-embed-text\nollama pull llama3.1\nEach command downloads the model and saves it locally to your computer.\n\n\n\n\n\n\nTipDownload sizes\n\n\n\n\nnomic-embed-text: ~300 MB (required)\nllama3.1: ~5 GB (used to generate topic labels; optional if storage is tight — see Step 4 for how to run without it)\n\nYou only need to pull the models once. They stay on your computer for future use.\n\n\n3. Confirm Ollama is running before moving to the next step. On Mac, look for the Ollama icon in the menu bar. On Windows, check the system tray at the bottom right of the screen."
+  },
+  {
+    "objectID": "instructions/02_hands_on_exercise.html#step-3-set-up-python-path-a-only",
+    "href": "instructions/02_hands_on_exercise.html#step-3-set-up-python-path-a-only",
+    "title": "4b · Topic Modeling Exercise",
+    "section": "Step 3 — Set Up Python (Path A only)",
+    "text": "Step 3 — Set Up Python (Path A only)\nOpen a terminal directly inside the project folder computational-approaches-text-analysis.\nMac: In Finder, navigate into the folder. Right-click (or Control-click) on it and choose New Terminal at Folder. If that option is not visible, go to System Settings → Keyboard → Keyboard Shortcuts → Services and enable “New Terminal at Folder”.\nWindows: In File Explorer, navigate into the folder. Click on the address bar at the top, type powershell, and press Enter. A PowerShell window will open already inside the folder.\nYou can verify you are in the right place by running ls (Mac) or dir (Windows). You should see folders named data, scripts, and outputs.\nCreate and activate a virtual environment, then install the required packages.\nMac:\npython3.11 -m venv .venv\nsource .venv/bin/activate\npython3.11 -m pip install -r requirements.txt\nWindows:\npython3.11 -m venv .venv\n.venv\\Scripts\\activate\npython3.11 -m pip install -r requirements.txt\nThis installs bertopic, umap-learn, hdbscan, pandas, plotly, and requests."
+  },
+  {
+    "objectID": "instructions/02_hands_on_exercise.html#step-4-run-the-pipeline",
+    "href": "instructions/02_hands_on_exercise.html#step-4-run-the-pipeline",
+    "title": "4b · Topic Modeling Exercise",
+    "section": "Step 4 — Run the Pipeline",
+    "text": "Step 4 — Run the Pipeline\nIn the same terminal from Step 3 (with the virtual environment still active), run the script with a custom output directory so your results do not overwrite the prepared reference files:\npython3.11 scripts/run_bertopic.py --output-dir outputs/my_run\nThe script will print its progress as it works through each stage:\nLoaded 50 paragraphs from data/interviews.csv\nEmbedding 50 paragraphs with nomic-embed-text …\n  Embedded 10/50\n  …\nRunning BERTopic …\nFound 7 topics, 2 outlier paragraphs (topic -1)\nLabeling topics with llama3.1:latest …\n  Topic 0: Importance of Transparency and Honesty in Digital Influencing\n  …\nSaving visualizations …\nResults written to outputs/my_run\n\n\n\n\n\n\nTipEmbeddings are cached\n\n\n\nThe first run embeds all 50 paragraphs, which takes a few minutes. On any later run, the cached .npy file is reused automatically, so re-runs are much faster.\n\n\n\n\n\n\n\n\nWarningIf you do not have llama3.1 (5 GB)\n\n\n\nSkip the labeling step. The script will fall back to c-TF-IDF names:\npython3.11 scripts/run_bertopic.py --output-dir outputs/my_run --skip-labels"
+  },
+  {
+    "objectID": "instructions/02_hands_on_exercise.html#step-5-open-your-results",
+    "href": "instructions/02_hands_on_exercise.html#step-5-open-your-results",
+    "title": "4b · Topic Modeling Exercise",
+    "section": "Step 5 — Open Your Results",
+    "text": "Step 5 — Open Your Results\nYour results will be in outputs/my_run/:\noutputs/my_run/\n  topic_review_table.csv\n  topic_assignments.csv\n  topic_labels_llm.csv\n  topic_info.csv\n  visualizations/\n    topic_barchart.html\n    topics.html\n    documents.html\nStart with topic_review_table.csv in a spreadsheet. Then open each .html file in a browser by double-clicking it.\n\n\n\n\n\n\nTip\n\n\n\nThe prepared reference results (used in Path B) are in outputs/interviews_bertopic/ and are separate from your run."
+  },
+  {
+    "objectID": "instructions/02_hands_on_exercise.html#if-you-cannot-run-the-code-path-b",
+    "href": "instructions/02_hands_on_exercise.html#if-you-cannot-run-the-code-path-b",
+    "title": "4b · Topic Modeling Exercise",
+    "section": "If You Cannot Run the Code (Path B)",
+    "text": "If You Cannot Run the Code (Path B)\nUse the prepared results below.\n\n  Topic review table\n  Row-by-row assignments\n  LLM topic labels"
+  },
+  {
+    "objectID": "instructions/02_hands_on_exercise.html#step-6-interpret-one-topic",
+    "href": "instructions/02_hands_on_exercise.html#step-6-interpret-one-topic",
+    "title": "4b · Topic Modeling Exercise",
+    "section": "Step 6 — Interpret One Topic",
+    "text": "Step 6 — Interpret One Topic\nOpen topic_review_table.csv and choose one topic to focus on. Answer these questions:\n\nWhat is the topic label (from llama3.1)?\nWhich top words support the label? Which seem mismatched or vague?\nWhich example text best represents the topic? Quote a phrase.\nWhich interviewees contributed paragraphs to this topic? Does that distribution surprise you?\nWould you keep the label, revise it, or split it into two separate ideas?\nWhat would you need to read closely before making a research claim?"
+  },
+  {
+    "objectID": "instructions/02_hands_on_exercise.html#step-7-discussion",
+    "href": "instructions/02_hands_on_exercise.html#step-7-discussion",
+    "title": "4b · Topic Modeling Exercise",
+    "section": "Step 7 — Discussion",
+    "text": "Step 7 — Discussion\nThe model found 7 topics. Topics 0, 1, and 2 are all transparency-adjacent. Topics 4 and 5 each draw from only one speaker.\nDiscuss:\n\nTopics 0, 1, and 2 share similar vocabulary. Are these meaningfully distinct themes, or does the model separate them based on surface differences? What would you need to read to decide?\nTopic 4 (Inclusive Representation) comes entirely from Linda. Topic 5 (Responsible Data Management) comes entirely from Gina. Does this reflect a genuine thematic difference, or individual vocabulary?\nIn the document map, look at how the topic clusters are positioned. Are any scattered across the space or tightly packed? What does the spatial spread suggest about their coherence?\nHow would the topic distribution look if the dataset included speakers with opposing views on disclosure norms?"
+  },
+  {
+    "objectID": "instructions/02_hands_on_exercise.html#step-8-compare-your-prediction-with-the-model",
+    "href": "instructions/02_hands_on_exercise.html#step-8-compare-your-prediction-with-the-model",
+    "title": "4b · Topic Modeling Exercise",
+    "section": "Step 8 — Compare Your Prediction with the Model",
+    "text": "Step 8 — Compare Your Prediction with the Model\nYou wrote down expected themes in Step 1. Compare:\n\nWhich topic matched your prediction?\nWhich topic surprised you?\nDid the model capture meaning, or just repeated vocabulary?"
+  },
+  {
+    "objectID": "instructions/02_hands_on_exercise.html#step-9-write-120180-words",
+    "href": "instructions/02_hands_on_exercise.html#step-9-write-120180-words",
+    "title": "4b · Topic Modeling Exercise",
+    "section": "Step 9 — Write 120–180 Words",
+    "text": "Step 9 — Write 120–180 Words\nUse this template:\n\nThe topic model found that one recurring theme in these interviews is _____. I know this because the top words include _____ and the example passage says _____. The model identified 7 topics; two of them draw from only one speaker. This likely reflects _____. However, I would be careful about claiming _____ because _____. A researcher following up should read _____ closely and also consider whether adjacent topics should be merged or treated as distinct."
+  },
+  {
+    "objectID": "instructions/02_hands_on_exercise.html#common-problems",
+    "href": "instructions/02_hands_on_exercise.html#common-problems",
+    "title": "4b · Topic Modeling Exercise",
+    "section": "Common Problems",
+    "text": "Common Problems\nOllama is not running. Start Ollama from the Applications folder (Mac) or run ollama serve in a terminal. The Ollama icon should appear in the menu bar before you run the script.\nnomic-embed-text model not found. Run ollama pull nomic-embed-text and wait for the download to complete.\npython3.11 is not recognized. Check which Python versions are installed: python3 --version. If python3 is version 3.11, replace python3.11 with python3.\nWrong folder. Your terminal must be in the project folder — the one that contains data/, scripts/, outputs/, and requirements.txt."
+  }
+]

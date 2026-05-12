@@ -1,0 +1,180 @@
+---
+title: "1 · Software QDA"
+subtitle: "Manual coding with QualCoder"
+---
+
+::: {.callout-note}
+## By the end of this section you will be able to
+
+- Explain what software-assisted QDA does and when to use it
+- Create a simple codebook and apply codes to interview text in QualCoder
+- Describe how manual coding relates to — and differs from — the computational methods that follow
+:::
+
+## What Is Software-Assisted QDA?
+
+Qualitative data analysis software gives you a structured environment for doing what qualitative researchers have always done: read closely, annotate, and organize meaning. The difference from paper and highlighters is scale and structure. With QDA software you can:
+
+- **Code** — assign labels to passages and retrieve all passages sharing a code
+- **Memo** — write interpretive notes attached to data or codes
+- **Query** — search across codes, documents, and annotations
+- **Visualize** — generate code co-occurrence maps and frequency charts
+
+The analysis is still human-driven. The software does not find themes; it helps you track and retrieve the themes you identify.
+
+::: {.callout-tip}
+## When to use software-assisted QDA
+
+- Your dataset is small enough to read closely (dozens to low hundreds of documents)
+- Your research question requires careful attention to context, tone, and nuance
+- You are working collaboratively and need shared codebooks
+- Your data includes multimedia (audio, video, images)
+- You want to document your analytical process for transparency
+:::
+
+Most QDA tools support a common set of data types:
+
+| Data type | Examples |
+|---|---|
+| Plain text | Interview transcripts, field notes, open-ended survey responses |
+| Documents | PDFs, Word files |
+| Spreadsheets | CSV exports from survey platforms |
+| Images | Screenshots, photographs |
+| Audio / Video | Recorded interviews, social media clips |
+
+## QDA Tools
+
+### QualCoder
+
+**QualCoder** is free, open-source, and functionally comparable to commercial alternatives. It runs locally on your computer — no subscription, no cloud account, and full control over your data.
+
+| Feature | Description |
+|---|---|
+| Text coding | Highlight passages and assign codes |
+| Codebook | Create and organize a hierarchical codebook |
+| Code retrieval | Pull all passages sharing a code across documents |
+| Memos | Attach interpretive notes to codes or passages |
+| Reports | Code frequency, co-occurrence, intercoder agreement |
+| AI assist | Optional local AI coding suggestions via Ollama |
+
+::: {.callout-tip}
+## Installation and demo project
+
+A step-by-step setup guide and a ready-to-use demo project are available on Zenodo:
+
+**[zenodo.org/records/18604273](https://zenodo.org/records/18604273)**
+
+The archive includes:
+
+- **QualCoder-AI-setup.pdf** — installation instructions and optional local AI configuration (Ollama + Llama 3.1)
+- **ucldw2026-influencers-ai-demo.zip** — a complete QualCoder project built on the same influencer interview dataset used in this workshop, with a pre-established codebook, memos, and AI prompts
+
+Download the demo project to explore a fully coded project before building your own.
+:::
+
+### ATLAS.ti
+
+**ATLAS.ti** is one of the most widely used commercial QDA platforms. UCR Library holds a license accessible at the [STAR Lab](https://library.ucr.edu/using-the-library/technology-equipment/specialty-labs) using the public account. Note that a desktop session and a web session count as two separate users.
+
+ATLAS.ti covers the same core functions as QualCoder with a more polished interface.
+
+::: {.callout-tip}
+## Using the STAR Lab
+
+The STAR Lab is a specialty computing lab in the UCR Library with licensed software for research and data analysis. [Make a reservation](https://library.ucr.edu/using-the-library/technology-equipment/specialty-labs) before your visit.
+:::
+
+::: {.callout-tip}
+## Other tools worth knowing
+
+- **NVivo** — available at the STAR Lab; note that UCR Library's license is on an older version that cannot be updated
+- **MAXQDA** — popular in social science; integrates with third-party LLMs (Claude, Gemini)
+- **Taguette** — free, open-source, simpler than QualCoder; good for basic text coding
+:::
+
+## AI-Assisted Coding
+
+All major QDA platforms now offer some form of AI assistance. The key distinction is where the AI runs and who controls the process.
+
+| Tool | Type | AI | Data |
+|---|---|---|---|
+| ATLAS.ti, NVivo, MAXQDA | Commercial | Cloud-based LLMs | Vendor-managed; data does not leave the platform |
+| QualCoder | Open source | Local models via Ollama | Stays on your machine; fully offline option |
+
+::: {.callout-important}
+## AI in qualitative research: a human-first principle
+
+AI tools can suggest codes, summarize passages, and group themes, but they cannot replace interpretive judgment. Current best practice treats the AI as a support tool, not a decision-maker:
+
+- Structure prompts incrementally, one task at a time
+- Review every AI suggestion before accepting it
+- Document your prompts, model used, and any decisions made
+- De-identify data before sending it to any cloud-based model
+- Prefer local models (Ollama) when working with sensitive transcripts
+
+The goal is human-in-the-loop analysis, not automated coding.
+:::
+
+## In-Class Exercise
+
+The in-class exercise uses **Taguette** — a browser-based tool that requires no installation and gets you coding in under two minutes.
+
+```{=html}
+<p>
+  <a class="btn-site" href="software_qda_exercise.qmd">Open hands-on exercise →</a>
+</p>
+```
+
+## Take-Home: Explore QualCoder
+
+After the workshop, try the full QualCoder workflow using the Zenodo archive at [zenodo.org/records/18604273](https://zenodo.org/records/18604273).
+
+**Step 1 — Install QualCoder.**
+Download and follow the **QualCoder-AI-setup.pdf** in the archive. It walks you through installation on Mac, Windows, and Linux, and includes optional steps to enable the local AI function (Ollama + Llama 3.1).
+
+**Step 2 — Open the demo project.**
+Download and unzip **ucldw2026-influencers-ai-demo.zip** from the archive. Open QualCoder and load this project. It includes a codebook, project memos, and the AI prompts used during analysis.
+
+**Step 3 — Build on the demo project.**
+Using the existing codebook as a starting point, add new codes, apply them to additional paragraphs, or revise existing ones. A paragraph can receive more than one code.
+
+**Step 4 — Reflect.**
+
+- Which passages were easy to code? Which required judgment?
+- Did any paragraph seem to fit two codes equally well?
+- Did you add codes that were not in the original codebook?
+
+## Reflection and Next Steps
+
+When you move to computational methods in the next sections, keep these questions in mind:
+
+- Does the topic model find the same themes you identified by hand?
+- Does it find anything you missed?
+- What does it miss that you caught?
+
+Manual coding and computational modeling are not competitors. They are different entry points into the same data, each surfacing different aspects of the text.
+
+## Additional Resources
+
+**QualCoder**
+
+- [Installation and demo project](https://zenodo.org/records/18604273) — setup guide + pre-built influencer interview project (Zenodo)
+- [QualCoder releases](https://github.com/ccbogel/QualCoder/releases) — download the latest version
+- [Library Carpentry: Qualitative Data Analysis with QualCoder](https://librarycarpentry.github.io/lc-qualitative-qualcoder/04-qualitative-data-analysis.html) — covers case analysis, thematic analysis, and framework matrices
+
+**ATLAS.ti**
+
+- [ATLAS.ti trainings](https://atlasti.com/trainings) — live and on-demand sessions from the developer
+- [ATLAS.ti research guides](https://atlasti.com/guides) — step-by-step guides by feature and method
+- [ATLAS.ti video tutorials](https://atlasti.com/video-tutorials) — feature walkthroughs and demos
+- [STAR Lab](https://library.ucr.edu/using-the-library/technology-equipment/specialty-labs) — access ATLAS.ti using the public account; make a reservation before your visit
+
+**QDA Tools — General**
+
+- [Temple University Libraries: Qualitative Data Analysis and Tools](https://guides.temple.edu/c.php?g=1097342&p=8002856) — tool comparisons, getting-started guides
+- [NYU Libraries: Qualitative Data Analysis](https://guides.nyu.edu/QDA/home) — guides by method and tool
+
+**AI in Qualitative Research**
+
+- [Critical Integration of GenAI in Qualitative Analysis](https://zenodo.org/records/18604273) — prompting strategies and ethical considerations for AI-assisted qualitative coding (UC Love Data Week 2026)
+- [QualCoder wiki](https://github.com/ccbogel/QualCoder/wiki) — documentation, feature notes, and community guides

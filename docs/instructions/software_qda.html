@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1 · Software QDA – Computational Approaches to Text Analysis</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../instructions/assets/site.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Computational Approaches to Text Analysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-workshop" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Workshop</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-workshop">    
+        <li>
+    <a class="dropdown-item" href="../instructions/software_qda.html">
+ <span class="dropdown-text">1 · Software QDA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../instructions/software_qda_exercise.html">
+ <span class="dropdown-text">1b · Hands-On QDA Exercise</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../instructions/word_counting.html">
+ <span class="dropdown-text">2 · Word Counting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../instructions/word_counting_exercise.html">
+ <span class="dropdown-text">2b · Word Counting Exercise</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../instructions/sentiment_analysis.html">
+ <span class="dropdown-text">3 · Sentiment Analysis</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../instructions/01_simple_explanation.html">
+ <span class="dropdown-text">4 · Topic Modeling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../instructions/02_hands_on_exercise.html">
+ <span class="dropdown-text">4b · Topic Modeling Exercise</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../slides.html"> 
+<span class="menu-text">Slides</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-software-assisted-qda" id="toc-what-is-software-assisted-qda" class="nav-link active" data-scroll-target="#what-is-software-assisted-qda">What Is Software-Assisted QDA?</a></li>
+  <li><a href="#qda-tools" id="toc-qda-tools" class="nav-link" data-scroll-target="#qda-tools">QDA Tools</a>
+  <ul class="collapse">
+  <li><a href="#qualcoder" id="toc-qualcoder" class="nav-link" data-scroll-target="#qualcoder">QualCoder</a></li>
+  <li><a href="#atlas.ti" id="toc-atlas.ti" class="nav-link" data-scroll-target="#atlas.ti">ATLAS.ti</a></li>
+  </ul></li>
+  <li><a href="#ai-assisted-coding" id="toc-ai-assisted-coding" class="nav-link" data-scroll-target="#ai-assisted-coding">AI-Assisted Coding</a></li>
+  <li><a href="#in-class-exercise" id="toc-in-class-exercise" class="nav-link" data-scroll-target="#in-class-exercise">In-Class Exercise</a></li>
+  <li><a href="#take-home-explore-qualcoder" id="toc-take-home-explore-qualcoder" class="nav-link" data-scroll-target="#take-home-explore-qualcoder">Take-Home: Explore QualCoder</a></li>
+  <li><a href="#reflection-and-next-steps" id="toc-reflection-and-next-steps" class="nav-link" data-scroll-target="#reflection-and-next-steps">Reflection and Next Steps</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">1 · Software QDA</h1>
+<p class="subtitle lead">Manual coding with QualCoder</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>By the end of this section you will be able to
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Explain what software-assisted QDA does and when to use it</li>
+<li>Create a simple codebook and apply codes to interview text in QualCoder</li>
+<li>Describe how manual coding relates to — and differs from — the computational methods that follow</li>
+</ul>
+</div>
+</div>
+<section id="what-is-software-assisted-qda" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-software-assisted-qda">What Is Software-Assisted QDA?</h2>
+<p>Qualitative data analysis software gives you a structured environment for doing what qualitative researchers have always done: read closely, annotate, and organize meaning. The difference from paper and highlighters is scale and structure. With QDA software you can:</p>
+<ul>
+<li><strong>Code</strong> — assign labels to passages and retrieve all passages sharing a code</li>
+<li><strong>Memo</strong> — write interpretive notes attached to data or codes</li>
+<li><strong>Query</strong> — search across codes, documents, and annotations</li>
+<li><strong>Visualize</strong> — generate code co-occurrence maps and frequency charts</li>
+</ul>
+<p>The analysis is still human-driven. The software does not find themes; it helps you track and retrieve the themes you identify.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>When to use software-assisted QDA
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Your dataset is small enough to read closely (dozens to low hundreds of documents)</li>
+<li>Your research question requires careful attention to context, tone, and nuance</li>
+<li>You are working collaboratively and need shared codebooks</li>
+<li>Your data includes multimedia (audio, video, images)</li>
+<li>You want to document your analytical process for transparency</li>
+</ul>
+</div>
+</div>
+<p>Most QDA tools support a common set of data types:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data type</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Plain text</td>
+<td>Interview transcripts, field notes, open-ended survey responses</td>
+</tr>
+<tr class="even">
+<td>Documents</td>
+<td>PDFs, Word files</td>
+</tr>
+<tr class="odd">
+<td>Spreadsheets</td>
+<td>CSV exports from survey platforms</td>
+</tr>
+<tr class="even">
+<td>Images</td>
+<td>Screenshots, photographs</td>
+</tr>
+<tr class="odd">
+<td>Audio / Video</td>
+<td>Recorded interviews, social media clips</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="qda-tools" class="level2">
+<h2 class="anchored" data-anchor-id="qda-tools">QDA Tools</h2>
+<section id="qualcoder" class="level3">
+<h3 class="anchored" data-anchor-id="qualcoder">QualCoder</h3>
+<p><strong>QualCoder</strong> is free, open-source, and functionally comparable to commercial alternatives. It runs locally on your computer — no subscription, no cloud account, and full control over your data.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Text coding</td>
+<td>Highlight passages and assign codes</td>
+</tr>
+<tr class="even">
+<td>Codebook</td>
+<td>Create and organize a hierarchical codebook</td>
+</tr>
+<tr class="odd">
+<td>Code retrieval</td>
+<td>Pull all passages sharing a code across documents</td>
+</tr>
+<tr class="even">
+<td>Memos</td>
+<td>Attach interpretive notes to codes or passages</td>
+</tr>
+<tr class="odd">
+<td>Reports</td>
+<td>Code frequency, co-occurrence, intercoder agreement</td>
+</tr>
+<tr class="even">
+<td>AI assist</td>
+<td>Optional local AI coding suggestions via Ollama</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Installation and demo project
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A step-by-step setup guide and a ready-to-use demo project are available on Zenodo:</p>
+<p><strong><a href="https://zenodo.org/records/18604273">zenodo.org/records/18604273</a></strong></p>
+<p>The archive includes:</p>
+<ul>
+<li><strong>QualCoder-AI-setup.pdf</strong> — installation instructions and optional local AI configuration (Ollama + Llama 3.1)</li>
+<li><strong>ucldw2026-influencers-ai-demo.zip</strong> — a complete QualCoder project built on the same influencer interview dataset used in this workshop, with a pre-established codebook, memos, and AI prompts</li>
+</ul>
+<p>Download the demo project to explore a fully coded project before building your own.</p>
+</div>
+</div>
+</section>
+<section id="atlas.ti" class="level3">
+<h3 class="anchored" data-anchor-id="atlas.ti">ATLAS.ti</h3>
+<p><strong>ATLAS.ti</strong> is one of the most widely used commercial QDA platforms. UCR Library holds a license accessible at the <a href="https://library.ucr.edu/using-the-library/technology-equipment/specialty-labs">STAR Lab</a> using the public account. Note that a desktop session and a web session count as two separate users.</p>
+<p>ATLAS.ti covers the same core functions as QualCoder with a more polished interface.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Using the STAR Lab
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The STAR Lab is a specialty computing lab in the UCR Library with licensed software for research and data analysis. <a href="https://library.ucr.edu/using-the-library/technology-equipment/specialty-labs">Make a reservation</a> before your visit.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Other tools worth knowing
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>NVivo</strong> — available at the STAR Lab; note that UCR Library’s license is on an older version that cannot be updated</li>
+<li><strong>MAXQDA</strong> — popular in social science; integrates with third-party LLMs (Claude, Gemini)</li>
+<li><strong>Taguette</strong> — free, open-source, simpler than QualCoder; good for basic text coding</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="ai-assisted-coding" class="level2">
+<h2 class="anchored" data-anchor-id="ai-assisted-coding">AI-Assisted Coding</h2>
+<p>All major QDA platforms now offer some form of AI assistance. The key distinction is where the AI runs and who controls the process.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Type</th>
+<th>AI</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ATLAS.ti, NVivo, MAXQDA</td>
+<td>Commercial</td>
+<td>Cloud-based LLMs</td>
+<td>Vendor-managed; data does not leave the platform</td>
+</tr>
+<tr class="even">
+<td>QualCoder</td>
+<td>Open source</td>
+<td>Local models via Ollama</td>
+<td>Stays on your machine; fully offline option</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>AI in qualitative research: a human-first principle
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>AI tools can suggest codes, summarize passages, and group themes, but they cannot replace interpretive judgment. Current best practice treats the AI as a support tool, not a decision-maker:</p>
+<ul>
+<li>Structure prompts incrementally, one task at a time</li>
+<li>Review every AI suggestion before accepting it</li>
+<li>Document your prompts, model used, and any decisions made</li>
+<li>De-identify data before sending it to any cloud-based model</li>
+<li>Prefer local models (Ollama) when working with sensitive transcripts</li>
+</ul>
+<p>The goal is human-in-the-loop analysis, not automated coding.</p>
+</div>
+</div>
+</section>
+<section id="in-class-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-exercise">In-Class Exercise</h2>
+<p>The in-class exercise uses <strong>Taguette</strong> — a browser-based tool that requires no installation and gets you coding in under two minutes.</p>
+<p>
+  <a class="btn-site" href="../instructions/software_qda_exercise.html">Open hands-on exercise →</a>
+</p>
+</section>
+<section id="take-home-explore-qualcoder" class="level2">
+<h2 class="anchored" data-anchor-id="take-home-explore-qualcoder">Take-Home: Explore QualCoder</h2>
+<p>After the workshop, try the full QualCoder workflow using the Zenodo archive at <a href="https://zenodo.org/records/18604273">zenodo.org/records/18604273</a>.</p>
+<p><strong>Step 1 — Install QualCoder.</strong> Download and follow the <strong>QualCoder-AI-setup.pdf</strong> in the archive. It walks you through installation on Mac, Windows, and Linux, and includes optional steps to enable the local AI function (Ollama + Llama 3.1).</p>
+<p><strong>Step 2 — Open the demo project.</strong> Download and unzip <strong>ucldw2026-influencers-ai-demo.zip</strong> from the archive. Open QualCoder and load this project. It includes a codebook, project memos, and the AI prompts used during analysis.</p>
+<p><strong>Step 3 — Build on the demo project.</strong> Using the existing codebook as a starting point, add new codes, apply them to additional paragraphs, or revise existing ones. A paragraph can receive more than one code.</p>
+<p><strong>Step 4 — Reflect.</strong></p>
+<ul>
+<li>Which passages were easy to code? Which required judgment?</li>
+<li>Did any paragraph seem to fit two codes equally well?</li>
+<li>Did you add codes that were not in the original codebook?</li>
+</ul>
+</section>
+<section id="reflection-and-next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="reflection-and-next-steps">Reflection and Next Steps</h2>
+<p>When you move to computational methods in the next sections, keep these questions in mind:</p>
+<ul>
+<li>Does the topic model find the same themes you identified by hand?</li>
+<li>Does it find anything you missed?</li>
+<li>What does it miss that you caught?</li>
+</ul>
+<p>Manual coding and computational modeling are not competitors. They are different entry points into the same data, each surfacing different aspects of the text.</p>
+</section>
+<section id="additional-resources" class="level2">
+<h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+<p><strong>QualCoder</strong></p>
+<ul>
+<li><a href="https://zenodo.org/records/18604273">Installation and demo project</a> — setup guide + pre-built influencer interview project (Zenodo)</li>
+<li><a href="https://github.com/ccbogel/QualCoder/releases">QualCoder releases</a> — download the latest version</li>
+<li><a href="https://librarycarpentry.github.io/lc-qualitative-qualcoder/04-qualitative-data-analysis.html">Library Carpentry: Qualitative Data Analysis with QualCoder</a> — covers case analysis, thematic analysis, and framework matrices</li>
+</ul>
+<p><strong>ATLAS.ti</strong></p>
+<ul>
+<li><a href="https://atlasti.com/trainings">ATLAS.ti trainings</a> — live and on-demand sessions from the developer</li>
+<li><a href="https://atlasti.com/guides">ATLAS.ti research guides</a> — step-by-step guides by feature and method</li>
+<li><a href="https://atlasti.com/video-tutorials">ATLAS.ti video tutorials</a> — feature walkthroughs and demos</li>
+<li><a href="https://library.ucr.edu/using-the-library/technology-equipment/specialty-labs">STAR Lab</a> — access ATLAS.ti using the public account; make a reservation before your visit</li>
+</ul>
+<p><strong>QDA Tools — General</strong></p>
+<ul>
+<li><a href="https://guides.temple.edu/c.php?g=1097342&amp;p=8002856">Temple University Libraries: Qualitative Data Analysis and Tools</a> — tool comparisons, getting-started guides</li>
+<li><a href="https://guides.nyu.edu/QDA/home">NYU Libraries: Qualitative Data Analysis</a> — guides by method and tool</li>
+</ul>
+<p><strong>AI in Qualitative Research</strong></p>
+<ul>
+<li><a href="https://zenodo.org/records/18604273">Critical Integration of GenAI in Qualitative Analysis</a> — prompting strategies and ethical considerations for AI-assisted qualitative coding (UC Love Data Week 2026)</li>
+<li><a href="https://github.com/ccbogel/QualCoder/wiki">QualCoder wiki</a> — documentation, feature notes, and community guides</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

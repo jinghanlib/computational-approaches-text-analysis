@@ -1,0 +1,113 @@
+---
+title: "3 · Sentiment Analysis"
+subtitle: "Scoring tone with VADER"
+---
+
+::: {.callout-note}
+## By the end of this section you will be able to
+
+- Explain how rule-based sentiment analysis works
+- Interpret VADER sentiment scores applied to the interview dataset
+- Critically evaluate what the results reveal and what they miss
+:::
+
+## What Is Sentiment Analysis?
+
+Sentiment analysis assigns a numerical score to text to indicate whether the language is positive, negative, or neutral. It does not read for meaning; it measures the surface tone of words.
+
+Rule-based sentiment tools work from a **lexicon**: a dictionary of words pre-scored for emotional valence. When the tool sees a word like *honest* or *trust*, it adds to the positive score. When it sees *mislead* or *frustrated*, it adds to the negative score. The final score is a sum of these signals, normalized to a standard scale.
+
+::: {.callout-tip}
+## VADER
+
+**VADER** (Valence Aware Dictionary and sEntiment Reasoner) was designed for short, informal social media text. It handles:
+
+- Capitalization (*GREAT* scores higher than *great*)
+- Punctuation (*great!!!* scores higher than *great*)
+- Degree modifiers (*very good* > *good*, *barely good* < *good*)
+- Negation (*not good* flips the polarity)
+- Common slang and emoji
+
+VADER returns four scores per text:
+
+| Score | Meaning |
+|---|---|
+| `positive` | Proportion of tokens with positive valence |
+| `negative` | Proportion of tokens with negative valence |
+| `neutral` | Proportion of neutral tokens |
+| `compound` | Overall score, normalized to −1.0 (most negative) to +1.0 (most positive) |
+
+A compound score ≥ +0.05 is classified **positive**; ≤ −0.05 is **negative**; between is **neutral**.
+:::
+
+## Results
+
+The scores below were computed on all 50 interview paragraphs. Download the full results to explore individual scores.
+
+```{=html}
+<p>
+  <a class="btn-site" href="../outputs/interviews_sentiment/sentiment_scores.csv" download>Download sentiment scores</a>
+</p>
+```
+
+### Distribution of Compound Scores
+
+```{=html}
+<iframe class="viz-frame" title="Sentiment distribution" src="../outputs/interviews_sentiment/visualizations/sentiment_distribution.html" loading="lazy"></iframe>
+```
+
+48 of 50 paragraphs score as positive. Compound scores cluster between +0.70 and +0.98.
+
+### Scores by Interviewee
+
+```{=html}
+<iframe class="viz-frame" title="Sentiment by interviewee" src="../outputs/interviews_sentiment/visualizations/sentiment_by_interviewee.html" loading="lazy"></iframe>
+```
+
+All six speakers have median compound scores above +0.75. The spread within each speaker is narrow. There is almost no variation across the dataset.
+
+## Interpreting the Results
+
+::: {.callout-important}
+## The central interpretive question
+
+If 48 of 50 paragraphs score as positive, what does that actually mean?
+
+It could mean the speakers are genuinely positive. But it more likely reveals something about **genre**. These are interview responses in which influencers are explaining and justifying their professional practices. That genre calls for positive, confident language, even when describing a problem.
+
+VADER was trained on tweets and product reviews, where positive/negative signals are direct and intentional. Interview responses tend to use positively valenced words (*honest*, *trust*, *values*, *responsible*) to frame what are often complex or ambiguous situations.
+
+The tool cannot distinguish between:
+- "I believe in transparency" *(genuine conviction)*
+- "I always say I believe in transparency" *(performative)*
+- "I believe in transparency, but sometimes it's difficult" *(with reservation)*
+
+All three would score very similarly.
+:::
+
+### What the scores do reveal
+
+Even within a uniformly positive distribution, variation matters:
+
+- **Ben-003** is one of the only negative-scoring paragraphs. Read it: Ben is describing *other influencers'* unethical behavior. The negative score tracks the critique.
+- **Speakers with lower averages** (Ben, Gina) tend to use more hedged or critical language than those at the top (Alex, Otto).
+- The **width of the box plots** for each speaker indicates how consistent their tone is across their responses.
+
+## Discussion
+
+1. Why might professional interview language consistently score as positive even when the content involves criticism?
+2. Does high sentiment mean the speaker is being sincere or polished?
+3. What kind of text would VADER analyze more reliably than these interviews?
+4. If you used a different sentiment tool trained on formal professional speech, would you expect the results to differ? In what direction?
+
+## What Sentiment Analysis Adds
+
+Sentiment analysis is most useful when:
+
+- You have a large corpus where manual reading is impractical
+- The text comes from genres where sentiment is direct (social media, reviews, comment sections)
+- You are comparing sentiment between categories (speakers, time periods, platforms)
+
+For interview data, the near-uniform positive result tells you something important: the genre shapes the signal. Any computational method applied to interview text will run into the same issue in some form.
+
+As you move to topic modeling, consider whether the method reveals something that sentiment cannot, or whether it runs into the same genre constraints.

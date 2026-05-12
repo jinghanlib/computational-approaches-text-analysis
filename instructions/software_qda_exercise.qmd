@@ -1,0 +1,83 @@
+---
+title: "1b · Hands-On QDA Exercise"
+subtitle: "In-class coding with Taguette"
+---
+
+::: {.callout-note}
+## By the end of this exercise you will be able to
+
+- Import a text document into Taguette and create a codebook
+- Highlight and tag passages from the interview data
+- Retrieve all passages sharing a code and compare across documents
+:::
+
+## Why Taguette?
+
+**Taguette** is free, open-source, and runs entirely in your browser — nothing to install. It covers the core QDA workflow: import documents, create codes, highlight passages, and export results. It is a good starting point before moving to a full-featured tool like QualCoder or ATLAS.ti.
+
+Open Taguette at: [app.taguette.org](https://app.taguette.org). New to Taguette? See the [getting started guide](https://www.taguette.org/getting-started.html) for a walkthrough of the basic workflow.
+
+::: {.callout-tip}
+## Local vs. cloud
+
+The hosted version at `app.taguette.org` is the fastest way to start. If you are working with sensitive data, use the local desktop version — your data stays on your computer.
+:::
+
+## The Data
+
+Download the original interview transcripts from the Zenodo archive. The ZIP contains plain text files for each interviewee that Taguette can import directly.
+
+```{=html}
+<p>
+  <a class="btn-site" href="https://zenodo.org/records/18604273">Download from Zenodo</a>
+</p>
+```
+
+Unzip the archive and use the individual transcript files. For this exercise, import one or two to keep things manageable in class.
+
+## Exercise
+
+**Step 1 — Create a project.**
+Go to [app.taguette.org](https://app.taguette.org). Click **New Project**, give it a name (e.g., *Influencer Ethics*), and click **Create**.
+
+**Step 2 — Import a document.**
+Click **Add Document** and upload one of the `.txt` transcript files from the Zenodo archive. Use the interviewee's name as the document name.
+
+**Step 3 — Create codes.**
+In the left panel, click **Add Tag** to create your codebook. Start with 3–4 codes. For example:
+
+| Code | Description |
+|---|---|
+| `disclosure` | Explicit mention of labeling sponsored content |
+| `authenticity` | Claims about genuine belief in promoted products |
+| `community` | Audience trust, accountability, mutual responsibility |
+| `sustainability` | References to environmental or ethical responsibility |
+
+**Step 4 — Highlight and tag.**
+Open your document. Select a passage, then click a tag to apply it. A passage can receive more than one tag.
+
+**Step 5 — Review your tags.**
+Click on a tag name in the left panel to see all passages with that code collected in one view.
+
+**Step 6 — Discuss.**
+
+- Which passages were straightforward to code? Which required judgment?
+- Did any passage fit two codes equally well?
+
+- How does the act of highlighting and labeling change how you read the text?
+
+## From Manual Coding to Computational Methods
+
+Manual coding forces you to make interpretive decisions one passage at a time. As you move through the next sections — word counting, sentiment analysis, and topic modeling — keep these questions in mind:
+
+- Does the computational method surface the same themes you identified by hand?
+- What does it miss that you noticed?
+- What does it find that you did not?
+
+::: {.callout-tip}
+## Continue at home with QualCoder
+
+Taguette covers the basics. For a fuller workflow — hierarchical codebooks, memos, reports, intercoder agreement, and optional AI assist — try **QualCoder** after the workshop.
+
+A setup guide and a ready-to-use demo project built on this same dataset are available at [zenodo.org/records/18604273](https://zenodo.org/records/18604273).
+:::

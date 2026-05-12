@@ -1,0 +1,43 @@
+.DS_Store
+.quarto/
+**/*.quarto_ipynb
+.venv/
+__pycache__/
+*.py[cod]
+.numba_cache/
+.mplconfig/
+.Rhistory
+.claude/
+
+# Large embedding cache files
+*.npy
+
+# Reference PDFs (not for public distribution)
+*.pdf
+*.pptx.pdf
+
+# Internal planning docs
+PROJECT_BRIEF.md
+
+# Raw source files and scraped data not used in the workshop
+data/raw/
+data/extract-posts-list-*.csv
+
+# Legacy output folders
+outputs/interviews/
+outputs/interviews_advanced_ollama/
+outputs/interviews_comparison/
+outputs/media_texts/
+outputs/media_texts_advanced_ollama/
+outputs/media_texts_comparison/
+outputs/my_run/
+outputs/my_media_run/
+
+# Legacy scripts not used in the workshop
+scripts/generate_simulated_data.py
+scripts/run_advanced_ollama_topic_model.py
+scripts/compare_topic_models.py
+scripts/visualize_topic_results.py
+scripts/run_topic_model.py
+
+/.quarto/

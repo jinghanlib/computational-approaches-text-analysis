@@ -1,0 +1,76 @@
+---
+title: "Computational Approaches to Text Analysis"
+---
+
+This workshop introduces computational tools for analyzing qualitative data. It is designed for researchers and students with no prior coding experience. You will move through four methods, from manual software-assisted coding to fully automated topic modeling, and practice deciding when each approach is appropriate for a research question.
+
+::: {.callout-note}
+## Workshop learning goals
+
+- Understand the difference between software-assisted and computational approaches to qualitative analysis
+- Apply word counting, sentiment analysis, and topic modeling to a shared dataset
+- Critically evaluate what each method reveals and what it misses
+- Connect computational findings to interpretive research questions
+:::
+
+## The Dataset
+
+All four exercises use the same dataset: **50 interview paragraphs** from six digital influencers (Alex, Ben, Gina, Linda, Margot, and Otto) discussing ethics, sponsorship, and audience relationships. The interviews were originally published by Renata Gonçalves Curty (UCSB) as part of a UC Love Data Week instructional archive and are available at [zenodo.org/records/18604273](https://zenodo.org/records/18604273). The version used here has been reformatted as a CSV for use across all workshop exercises.
+
+```{=html}
+<p>
+  <a class="btn-site" href="data/interviews.csv" download>Download interview data</a>
+</p>
+```
+
+## Workshop Arc
+
+::: {.grid}
+::: {.g-col-12 .g-col-md-6}
+<div class="card-route">
+
+### 1 · Software QDA
+
+Overview of qualitative data analysis (QDA) tools and manual coding concepts. In-class exercise with Taguette; take-home practice with QualCoder using a pre-built demo project.
+
+[Open →](instructions/software_qda.qmd){.btn-site}
+
+</div>
+:::
+
+::: {.g-col-12 .g-col-md-6}
+<div class="card-route">
+
+### 2 · Word Counting
+
+The simplest computational method: count how often words appear. Use Voyant Tools to explore word frequencies in the interview data and consider what frequency reveals and what it conceals.
+
+[Open →](instructions/word_counting.qmd){.btn-site}
+
+</div>
+:::
+
+::: {.g-col-12 .g-col-md-6}
+<div class="card-route">
+
+### 3 · Sentiment Analysis
+
+VADER assigns each paragraph a score from −1 to +1. Explore the pre-computed results and consider what the distribution tells you and what it leaves out.
+
+[Open →](instructions/sentiment_analysis.qmd){.btn-site}
+
+</div>
+:::
+
+::: {.g-col-12 .g-col-md-6}
+<div class="card-route">
+
+### 4 · Topic Modeling
+
+BERTopic groups paragraphs by meaning using text embeddings. Explore the output and interpret what the topics suggest about the interview data.
+
+[Open →](instructions/01_simple_explanation.qmd){.btn-site}
+
+</div>
+:::
+:::

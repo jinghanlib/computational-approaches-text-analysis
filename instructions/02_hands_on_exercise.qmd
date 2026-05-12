@@ -1,0 +1,248 @@
+---
+title: "4b · Topic Modeling Exercise"
+subtitle: "Run the BERTopic pipeline, then interpret what you find"
+---
+
+::: {.callout-note}
+## By the end of this exercise you will have
+
+- Embeddings generated for all 50 interview paragraphs using `nomic-embed-text`
+- A set of topics labeled by `llama3.1`
+- A topic review table and four interactive visualizations
+- A short written interpretation of one topic
+:::
+
+This exercise has two paths. Choose the one that fits where you are right now.
+
+**Path A: Run the pipeline.** Requires Python 3.11, Ollama, and two local models. You generate your own results from scratch.
+
+**Path B: Use reference results.** Skip all setup and work directly with the prepared outputs. You complete the same interpretation task.
+
+---
+
+## Step 1 — Get the Project Files
+
+Clone the repository to your computer:
+
+```bash
+git clone https://github.com/jinghanlib/computational-approaches-text-analysis.git
+cd computational-approaches-text-analysis
+```
+
+If you do not have git installed, download the ZIP from the repository page and unzip it.
+
+Then open `data/interviews.csv` in Excel or Google Sheets. Before running anything, read 5–8 paragraphs and write down the themes you expect to see. You will compare this prediction to the model output later.
+
+---
+
+## Step 2 — Install Ollama and Pull the Models (Path A only)
+
+The pipeline uses two local models that run through Ollama. No internet connection is required once they are downloaded.
+
+**1. Download and install Ollama.**
+Go to [ollama.com](https://ollama.com) and click the download button for your operating system.
+
+**Mac:** Open the downloaded `.dmg` file, drag Ollama to your Applications folder, then launch it from Applications. The Ollama icon will appear in the menu bar.
+
+**Windows:** Run the downloaded `.exe` installer and follow the prompts. Ollama will start automatically and appear as an icon in the system tray (bottom right of the taskbar). If it does not start automatically, search for "Ollama" in the Start menu and open it.
+
+**2. Open a terminal and pull the models.**
+Once Ollama is running, open a terminal. Location does not matter for this step.
+
+**Mac:** Open the Terminal app from Applications → Utilities → Terminal.
+
+**Windows:** Press **Windows key + R**, type `cmd`, and press Enter to open Command Prompt. Alternatively, search for "PowerShell" in the Start menu and open it.
+
+Then run these two commands, one at a time. Wait for each to finish before running the next:
+
+```bash
+ollama pull nomic-embed-text
+ollama pull llama3.1
+```
+
+Each command downloads the model and saves it locally to your computer.
+
+::: {.callout-tip}
+## Download sizes
+
+- `nomic-embed-text`: ~300 MB (required)
+- `llama3.1`: ~5 GB (used to generate topic labels; optional if storage is tight — see Step 4 for how to run without it)
+
+You only need to pull the models once. They stay on your computer for future use.
+:::
+
+**3. Confirm Ollama is running** before moving to the next step. On Mac, look for the Ollama icon in the menu bar. On Windows, check the system tray at the bottom right of the screen.
+
+---
+
+## Step 3 — Set Up Python (Path A only)
+
+Open a terminal directly inside the project folder `computational-approaches-text-analysis`.
+
+**Mac:**
+In Finder, navigate into the folder. Right-click (or Control-click) on it and choose **New Terminal at Folder**. If that option is not visible, go to System Settings → Keyboard → Keyboard Shortcuts → Services and enable "New Terminal at Folder".
+
+**Windows:**
+In File Explorer, navigate into the folder. Click on the address bar at the top, type `powershell`, and press Enter. A PowerShell window will open already inside the folder.
+
+You can verify you are in the right place by running `ls` (Mac) or `dir` (Windows). You should see folders named `data`, `scripts`, and `outputs`.
+
+Create and activate a virtual environment, then install the required packages.
+
+**Mac:**
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+python3.11 -m pip install -r requirements.txt
+```
+
+**Windows:**
+
+```powershell
+python3.11 -m venv .venv
+.venv\Scripts\activate
+python3.11 -m pip install -r requirements.txt
+```
+
+This installs `bertopic`, `umap-learn`, `hdbscan`, `pandas`, `plotly`, and `requests`.
+
+---
+
+## Step 4 — Run the Pipeline
+
+In the same terminal from Step 3 (with the virtual environment still active), run the script with a custom output directory so your results do not overwrite the prepared reference files:
+
+```bash
+python3.11 scripts/run_bertopic.py --output-dir outputs/my_run
+```
+
+The script will print its progress as it works through each stage:
+
+```text
+Loaded 50 paragraphs from data/interviews.csv
+Embedding 50 paragraphs with nomic-embed-text …
+  Embedded 10/50
+  …
+Running BERTopic …
+Found 7 topics, 2 outlier paragraphs (topic -1)
+Labeling topics with llama3.1:latest …
+  Topic 0: Importance of Transparency and Honesty in Digital Influencing
+  …
+Saving visualizations …
+Results written to outputs/my_run
+```
+
+::: {.callout-tip}
+## Embeddings are cached
+
+The first run embeds all 50 paragraphs, which takes a few minutes. On any later run, the cached `.npy` file is reused automatically, so re-runs are much faster.
+:::
+
+::: {.callout-warning}
+## If you do not have llama3.1 (5 GB)
+
+Skip the labeling step. The script will fall back to c-TF-IDF names:
+
+```bash
+python3.11 scripts/run_bertopic.py --output-dir outputs/my_run --skip-labels
+```
+:::
+
+---
+
+## Step 5 — Open Your Results
+
+Your results will be in `outputs/my_run/`:
+
+```text
+outputs/my_run/
+  topic_review_table.csv
+  topic_assignments.csv
+  topic_labels_llm.csv
+  topic_info.csv
+  visualizations/
+    topic_barchart.html
+    topics.html
+    documents.html
+```
+
+Start with `topic_review_table.csv` in a spreadsheet. Then open each `.html` file in a browser by double-clicking it.
+
+::: {.callout-tip}
+The prepared reference results (used in Path B) are in `outputs/interviews_bertopic/` and are separate from your run.
+:::
+
+---
+
+## If You Cannot Run the Code (Path B)
+
+Use the prepared results below.
+
+```{=html}
+<p>
+  <a class="btn-site" href="../outputs/interviews_bertopic/topic_review_table.csv" download>Topic review table</a>
+  <a class="btn-site" href="../outputs/interviews_bertopic/topic_assignments.csv" download>Row-by-row assignments</a>
+  <a class="btn-site" href="../outputs/interviews_bertopic/topic_labels_llm.csv" download>LLM topic labels</a>
+</p>
+```
+
+---
+
+## Step 6 — Interpret One Topic
+
+Open `topic_review_table.csv` and choose **one topic** to focus on. Answer these questions:
+
+1. What is the topic label (from llama3.1)?
+2. Which top words support the label? Which seem mismatched or vague?
+3. Which example text best represents the topic? Quote a phrase.
+4. Which interviewees contributed paragraphs to this topic? Does that distribution surprise you?
+5. Would you keep the label, revise it, or split it into two separate ideas?
+6. What would you need to read closely before making a research claim?
+
+---
+
+## Step 7 — Discussion
+
+The model found **7 topics**. Topics 0, 1, and 2 are all transparency-adjacent. Topics 4 and 5 each draw from only one speaker.
+
+Discuss:
+
+- Topics 0, 1, and 2 share similar vocabulary. Are these meaningfully distinct themes, or does the model separate them based on surface differences? What would you need to read to decide?
+- Topic 4 (Inclusive Representation) comes entirely from Linda. Topic 5 (Responsible Data Management) comes entirely from Gina. Does this reflect a genuine thematic difference, or individual vocabulary?
+- In the [document map](01_simple_explanation.qmd#document-map), look at how the topic clusters are positioned. Are any scattered across the space or tightly packed? What does the spatial spread suggest about their coherence?
+- How would the topic distribution look if the dataset included speakers with opposing views on disclosure norms?
+
+---
+
+## Step 8 — Compare Your Prediction with the Model
+
+You wrote down expected themes in Step 1. Compare:
+
+- Which topic matched your prediction?
+- Which topic surprised you?
+- Did the model capture meaning, or just repeated vocabulary?
+
+---
+
+## Step 9 — Write 120–180 Words
+
+Use this template:
+
+> The topic model found that one recurring theme in these interviews is \_\_\_\_\_. I know this because the top words include \_\_\_\_\_ and the example passage says \_\_\_\_\_. The model identified 7 topics; two of them draw from only one speaker. This likely reflects \_\_\_\_\_. However, I would be careful about claiming \_\_\_\_\_ because \_\_\_\_\_. A researcher following up should read \_\_\_\_\_ closely and also consider whether adjacent topics should be merged or treated as distinct.
+
+---
+
+## Common Problems
+
+**Ollama is not running.**
+Start Ollama from the Applications folder (Mac) or run `ollama serve` in a terminal. The Ollama icon should appear in the menu bar before you run the script.
+
+**`nomic-embed-text` model not found.**
+Run `ollama pull nomic-embed-text` and wait for the download to complete.
+
+**`python3.11` is not recognized.**
+Check which Python versions are installed: `python3 --version`. If `python3` is version 3.11, replace `python3.11` with `python3`.
+
+**Wrong folder.**
+Your terminal must be in the project folder — the one that contains `data/`, `scripts/`, `outputs/`, and `requirements.txt`.

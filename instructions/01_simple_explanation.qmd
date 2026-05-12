@@ -1,0 +1,151 @@
+---
+title: "What Is Topic Modeling?"
+subtitle: "A plain-language guide to the pipeline and the results"
+---
+
+::: {.callout-note}
+## By the end of this page you will be able to
+
+- Explain what neural topic modeling does in plain language
+- Trace the five steps from raw text to labeled topic
+- Read the results and evaluate whether a topic label makes sense
+- Explain why some topics draw from only one speaker and what that means for interpretation
+:::
+
+## The Data You Will Analyze
+
+The dataset contains **50 interview paragraphs** drawn from transcripts with six digital influencers: Alex, Ben, Gina, Linda, Margot, and Otto. Each person describes their approach to brand partnerships, audience relationships, and ethical responsibilities in their own words. Each paragraph is treated as one document.
+
+| Column | What it contains |
+|---|---|
+| `interview_id` | A unique ID for each paragraph (e.g., `ALEX-003`) |
+| `interviewee` | The speaker's first name |
+| `paragraph_num` | The paragraph's position within that interview |
+| `text` | The full text of the paragraph |
+
+## What Is Topic Modeling?
+
+Topic modeling finds structure in a collection of texts without reading each one individually. It groups documents that share similar patterns, either by shared words (classical methods) or by shared meaning (neural methods like the one used here).
+
+This project uses **BERTopic**, a neural topic modeling framework. The key difference from older approaches is in what "similar" means:
+
+- **Classical topic modeling** (e.g., LDA, NMF) groups documents that share distinctive *words*
+- **Neural topic modeling** (BERTopic) groups documents that share *meaning*, even if they use different words
+
+Both are valid approaches. The neural approach is better at capturing paraphrase and implication. The trade-off is that the groupings are based on learned vector representations rather than word counts, so the reasoning behind a cluster is less directly readable from the output.
+
+## The Five-Step Pipeline
+
+The script runs these steps in sequence:
+
+**Step 1: Embed each paragraph.**
+`nomic-embed-text` (a local language model running through Ollama) reads each paragraph and converts it into a list of 768 numbers. These numbers represent the paragraph's meaning as a position in a high-dimensional space. Paragraphs that discuss similar ideas end up close together; paragraphs about different ideas end up far apart.
+
+**Step 2: Reduce dimensions with UMAP.**
+768 dimensions are hard to cluster. UMAP compresses the positions down to 5 dimensions while preserving the neighborhood structure. Paragraphs that were close in 768 dimensions stay close in 5.
+
+**Step 3: Cluster with HDBSCAN.**
+HDBSCAN finds dense neighborhoods in the 5-dimensional space and calls each neighborhood a topic. Unlike algorithms that force equal-sized groups, HDBSCAN follows the actual density of the data. Paragraphs that do not belong to any dense neighborhood are marked as **outliers** (topic −1).
+
+**Step 4: Extract top words with c-TF-IDF.**
+For each cluster, c-TF-IDF identifies the words that appear more often in that cluster than across the whole dataset. These are the distinctive words: the ones that make this group different from the others.
+
+**Step 5: Label with llama3.1.**
+The top words and three example passages from each cluster are sent to a local LLM (`llama3.1` through Ollama). The model writes a human-readable topic name and a one-sentence description. This label is a suggestion; you should always check it against the top words and examples.
+
+::: {.callout-tip}
+## Key terms
+
+**Embedding**: a list of numbers that represents text meaning as a position in high-dimensional space. Two embeddings that are numerically close represent texts with similar meaning.
+
+**UMAP**: a dimensionality reduction algorithm that compresses high-dimensional embeddings to a smaller number of dimensions while keeping similar items near each other.
+
+**HDBSCAN**: a density-based clustering algorithm. It finds groups by looking for regions where points are unusually close together. It does not force a fixed number of equally-sized clusters.
+
+**c-TF-IDF**: class-level TF-IDF. It finds words that are distinctive for a cluster relative to the full dataset.
+
+**Outlier topic (−1)**: paragraphs HDBSCAN could not assign to any dense cluster. A small number of outliers is normal and expected.
+:::
+
+## How to Read the Topic Review Table
+
+Start with `topic_review_table.csv`. Open it in Excel or Google Sheets.
+
+| Column | What to look for |
+|---|---|
+| `topic_label` | The name llama3.1 suggested — treat it as a starting point |
+| `documents` | How many paragraphs were assigned to this topic |
+| `top_words` | The distinctive words from c-TF-IDF — the real evidence for the label |
+| `interviewees` | Which speakers contributed paragraphs to this topic |
+| `example_ids` | Paragraph IDs of the strongest matches |
+| `example_text` | A short excerpt to help you judge whether the label fits |
+
+::: {.callout-tip}
+## How to check a label
+
+1. Read the top words. Do they form a coherent idea, or do unrelated words appear together?
+2. Read the example texts. Does the label describe them accurately?
+3. Check the interviewees. If a topic draws from only one speaker, ask whether it reflects a genuine theme or that person's distinctive vocabulary.
+4. If the label is wrong, rewrite it based on what you actually see.
+:::
+
+## Prepared Results
+
+```{=html}
+<p>
+  <a class="btn-site" href="../outputs/interviews_bertopic/topic_review_table.csv" download>Download topic review table</a>
+  <a class="btn-site" href="../outputs/interviews_bertopic/topic_labels_llm.csv" download>Download LLM labels</a>
+  <a class="btn-site" href="../outputs/interviews_bertopic/topic_assignments.csv" download>Download row assignments</a>
+</p>
+```
+
+### Top Words per Topic
+
+Each bar shows the most distinctive words for one topic. The length of each bar is the c-TF-IDF score: how distinctive that word is for this topic relative to all others. Read the words carefully; do the top words for each topic tell a coherent story, or do some seem mismatched?
+
+```{=html}
+<iframe class="viz-frame" title="Top words per topic" src="../outputs/interviews_bertopic/visualizations/topic_barchart.html" loading="lazy"></iframe>
+```
+
+The hover score is a **c-TF-IDF weight**. It measures how distinctive that word is for this topic relative to all others. The number has no standalone meaning; what matters is which words score highest within each topic, not the absolute value.
+
+### Topic Map
+
+This chart places each topic as a circle in 2D space. Topics that are close together have more similar vocabularies. The size of each circle represents the number of paragraphs in that topic. Hover over each circle to see its label and top words.
+
+```{=html}
+<iframe class="viz-frame" title="Intertopic distance map" src="../outputs/interviews_bertopic/visualizations/topics.html" loading="lazy"></iframe>
+```
+
+### Document Map
+
+Each dot is one paragraph, positioned in 2D by the text embeddings. Dots of the same color belong to the same topic. Grey dots are outliers. Hover over any dot to read the paragraph text and see which topic it was assigned to.
+
+```{=html}
+<iframe class="viz-frame" title="Document map" src="../outputs/interviews_bertopic/visualizations/documents.html" loading="lazy"></iframe>
+```
+
+## What the Results Show
+
+::: {.callout-important}
+## Reading the topic distribution
+
+The model found **7 topics** and 2 outlier paragraphs. The largest topic (15 of 50 paragraphs) covers transparency and honesty across five of the six speakers. Two smaller topics draw from only one speaker each: Topic 4 (Inclusive Representation, Linda) and Topic 5 (Responsible Data Management, Gina).
+
+These single-speaker topics raise an interpretive question: do they reflect genuine thematic differences in what those speakers discuss, or do they reflect individual vocabulary patterns that the model grouped separately?
+
+Topics 0, 1, and 2 are all transparency-adjacent. The model separated them, but they share significant vocabulary. This is worth examining: are these meaningfully distinct themes, or variations on the same idea that a different parameter setting might merge?
+:::
+
+## Where Human Interpretation Takes Over
+
+Every step in the pipeline involved a human decision:
+
+- choosing which interview questions to ask
+- deciding to split the transcript into paragraphs rather than sentences or whole interviews
+- choosing which LLM to use for labeling
+- deciding whether to accept, revise, or reject a generated label
+- deciding whether adjacent topics should be merged or kept separate
+- returning to specific passages for close reading
+
+The pipeline organizes and surfaces patterns. Explaining what those patterns mean and why they matter for a research question is work that only a human reader can do.

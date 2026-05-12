@@ -1,0 +1,74 @@
+---
+title: "2b · Word Counting Exercise"
+subtitle: "Explore word frequencies with Voyant Tools"
+---
+
+::: {.callout-note}
+## By the end of this exercise you will have
+
+- Uploaded the interview transcripts to Voyant Tools
+- Identified the most frequent words and what they suggest
+- Read words in context and adjusted the stop word list
+- Noted at least one pattern worth investigating further
+:::
+
+## Get the Data
+
+Download the original interview transcripts from the Zenodo archive. You will upload the `.txt` files directly into Voyant.
+
+```{=html}
+<p>
+  <a class="btn-site" href="https://zenodo.org/records/18604273">Download from Zenodo</a>
+</p>
+```
+
+---
+
+## Step 1 — Upload the Data
+
+Go to [voyant-tools.org](https://voyant-tools.org), click **Upload**, and select one or more `.txt` files from the Zenodo archive.
+
+You can upload one file at a time or select all six to analyze the interviews together.
+
+---
+
+## Step 2 — Review the Cirrus Word Cloud
+
+Look at the top 5–10 most frequent words.
+
+- What themes do they suggest?
+- Are there words that seem surprising given the interview topic?
+
+---
+
+## Step 3 — Check the Trends Panel
+
+Select three or four words and look at how they are distributed across the six interviews.
+
+- Are any words used predominantly by one or two speakers?
+- Do any words appear only in one document?
+
+---
+
+## Step 4 — Use Contexts for One Word
+
+Click on a word in the cloud to open the Contexts view. Read 5–6 instances in their surrounding sentences.
+
+- Does the word always appear in the same type of sentence?
+- Does any speaker use it differently from the others?
+
+---
+
+## Step 5 — Adjust Stop Words
+
+In the Cirrus panel, click **Define Options** to edit the stop word list. Copy and paste words exactly as they appear in the cloud to add them. The list will be sorted alphabetically after you save.
+
+Try removing conversational words like *like*, *really*, *just*, *think*, or *also*. How does the word cloud change?
+
+---
+
+## Step 6 — Discuss
+
+- What did the word cloud confirm that you already expected?
+- What surprised you?
+- Which patterns would you want to investigate further with a richer method?

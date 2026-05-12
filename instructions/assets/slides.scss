@@ -1,0 +1,132 @@
+/*-- scss:defaults --*/
+
+$font-family-sans-serif: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !default;
+$presentation-heading-color: #003da5 !default;
+$presentation-heading-font-weight: 750 !default;
+$body-color: #1f2937 !default;
+$body-bg: #f6f8fc !default;
+$link-color: #002b73 !default;
+$selection-bg: #ffb81c !default;
+
+/*-- scss:rules --*/
+
+.reveal .slide-number {
+  color: #ffb81c;
+  background: transparent;
+}
+
+.reveal .progress {
+  color: #ffb81c;
+}
+
+.reveal .controls {
+  color: #003da5;
+}
+
+.reveal h1 {
+  color: #ffb81c;
+  font-weight: 800;
+}
+
+.reveal h2 {
+  color: #003da5;
+  border-bottom: 4px solid #ffb81c;
+  padding-bottom: 0.2em;
+  font-weight: 750;
+}
+
+.reveal h3 {
+  color: #1a3a6b;
+}
+
+.reveal .footer {
+  color: #8898aa;
+  font-size: 0.42em;
+}
+
+/* Section title slides */
+.reveal section[data-background-color="#003da5"] h2 {
+  color: #ffb81c !important;
+  border-bottom: 3px solid rgba(241, 171, 0, 0.35) !important;
+}
+
+.reveal section[data-background-color="#003da5"] p,
+.reveal section[data-background-color="#003da5"] li {
+  color: #e8f0ff;
+}
+
+.reveal section[data-background-color="#ffb81c"] h2 {
+  color: #003da5 !important;
+  border-bottom: 3px solid rgba(0, 46, 109, 0.25) !important;
+}
+
+/* Callout-style boxes */
+.callout-box {
+  background: #eaf1fb;
+  border-left: 6px solid #003da5;
+  padding: 0.55em 1em;
+  border-radius: 4px;
+  margin: 0.5em 0;
+}
+
+.gold-box {
+  background: #fff8e1;
+  border-left: 6px solid #ffb81c;
+  padding: 0.55em 1em;
+  border-radius: 4px;
+  margin: 0.5em 0;
+}
+
+/* Tables */
+.reveal table {
+  font-size: 0.8em;
+  width: 100%;
+}
+
+.reveal table thead th {
+  background: #003da5 !important;
+  color: #fff !important;
+}
+
+.reveal table tbody tr:nth-child(even) {
+  background: #f0f4f8;
+}
+
+/* Code blocks */
+.reveal pre {
+  font-size: 0.7em;
+  box-shadow: none;
+  border: 1px solid #d8deea;
+}
+
+/* Column gaps */
+.reveal .columns {
+  gap: 2em;
+}
+
+/* Larger bullets */
+.reveal ul, .reveal ol {
+  font-size: 0.92em;
+  line-height: 1.6;
+}
+
+/* Logo */
+.reveal .slide-logo {
+  display: block;
+  position: fixed;
+  bottom: 0.6em;
+  right: 0.8em;
+  width: 110px;
+  z-index: 100;
+  opacity: 0.9;
+}
+
+/* Links */
+.reveal a {
+  color: #003da5;
+  text-decoration: underline;
+}
+
+.reveal a:hover {
+  color: #ffb81c;
+}

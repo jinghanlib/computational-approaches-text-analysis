@@ -1,0 +1,70 @@
+---
+title: "2 · Word Counting"
+subtitle: "Frequency analysis with Voyant Tools"
+---
+
+::: {.callout-note}
+## By the end of this section you will be able to
+
+- Explain what word frequency analysis can and cannot tell you about a text
+- Use Voyant Tools to explore the most common words in the interview dataset
+- Identify what textual patterns word counts reveal and what they hide
+:::
+
+## Data Cleaning and Pre-Processing
+
+Before any counting happens, raw text needs to be cleaned and standardized. The choices made at this stage directly shape what the analysis surfaces.
+
+Typical pre-processing steps:
+
+1. **Tokenizing**: splitting the text into individual words; each word is called a token
+2. **Normalizing**: converting to lowercase, removing punctuation and numbers
+3. **Filtering stop words**: removing high-frequency function words that carry little meaning on their own, such as "the", "and", "is"
+4. **Lemmatizing**: reducing words to their base form so variants count together
+
+::: {.callout-tip}
+## Key terms
+
+**Stop words**: function words (articles, prepositions, conjunctions) that appear in nearly every document regardless of topic. Removing them lets more content-bearing words surface. The choice of stop word list affects results: "like" and "just" may need to be added manually for conversational text.
+
+**Lemmatization**: grouping word variants under a shared base form. "promoting", "promotes", and "promoted" all become "promote". Without lemmatization, these count separately and each appears less frequent than it actually is.
+:::
+
+## What Frequency Reveals and Conceals
+
+| What frequency can show | What it misses |
+|---|---|
+| Which concepts recur most | Tone and evaluation (*good* vs. *bad* product) |
+| How vocabulary differs across speakers | Sarcasm, hedging, negation |
+| Whether certain topics cluster together | Context and sequence |
+| Words used by only one speaker | What speakers imply but don't say |
+
+A word that appears 15 times in one interview and once in another is worth a closer look. But frequency alone cannot tell you *why* it appears or what the speaker thinks about it.
+
+## Voyant Tools
+
+**Voyant Tools** is a browser-based text analysis environment. It requires no installation; you upload text and get immediate visualizations.
+
+Open it at: [voyant-tools.org](https://voyant-tools.org)
+
+What Voyant provides:
+
+| Tool | What it shows |
+|---|---|
+| Cirrus (word cloud) | Most frequent words at a glance |
+| Trends | How word frequency changes across documents |
+| Summary | Top terms, document lengths, vocabulary density |
+| Contexts | Keywords in context (KWIC): words shown in their surrounding sentences |
+| Collocates | Words that consistently appear in the same context as a target word |
+
+## What Word Counting Adds
+
+Frequency analysis works best as a starting point. It helps you:
+
+- Identify vocabulary worth tracing across speakers
+- Notice imbalances in who uses what language
+- Generate hypotheses before running more complex analyses
+
+When you move to sentiment analysis and topic modeling, keep the frequency results in mind. Do the dominant topics match the most frequent words? Do speakers with distinctive vocabulary also cluster into distinct topics?
+
+Full instructions: [2b · Word Counting Exercise](word_counting_exercise.html)
