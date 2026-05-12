@@ -1,6 +1,6 @@
 # Computational Approaches to Text Analysis
 
-Workshop materials for a three-hour introduction to computational text analysis methods, developed at the UC Riverside Library. The workshop covers four approaches in sequence — manual coding, word frequency analysis, sentiment analysis, and topic modeling — all applied to the same interview dataset. Each method surfaces different patterns and raises different interpretive questions, and comparing them across a shared dataset is the core pedagogical move.
+Workshop materials for a three-hour introduction to computational text analysis methods. The workshop covers four approaches in sequence — manual coding, word frequency analysis, sentiment analysis, and topic modeling — all applied to the same interview dataset.
 
 **Live site:** https://jinghanlib.github.io/computational-approaches-text-analysis/
 
