@@ -389,3 +389,11 @@ What does each method add?
 . . .
 
 No single method is sufficient. Each entry point reveals something different about the same data.
+
+---
+
+## Survey
+
+Please take a moment to fill out the course survey:
+
+[https://forms.gle/yruyaG9VtdRzD5V4A](https://forms.gle/yruyaG9VtdRzD5V4A)
