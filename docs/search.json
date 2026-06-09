@@ -140,6 +140,13 @@
     "text": "Across All Four Methods\n\n\n\n\n\n\n\n\nMethod\nSurfaces\nMisses\n\n\n\n\nManual coding\nNuance, context, tone\nScale\n\n\nWord counting\nVocabulary patterns\nMeaning and evaluation\n\n\nSentiment analysis\nSurface tone distribution\nGenre, irony, qualification\n\n\nTopic modeling\nThematic groupings\nHow the theme is expressed differently across speakers\n\n\n\n\nNo single method is sufficient. Each entry point reveals something different about the same data."
   },
   {
+    "objectID": "slides.html#survey",
+    "href": "slides.html#survey",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "Survey",
+    "text": "Survey\nPlease take a moment to fill out the course survey:\nhttps://forms.gle/yruyaG9VtdRzD5V4A"
+  },
+  {
     "objectID": "instructions/01_simple_explanation.html",
     "href": "instructions/01_simple_explanation.html",
     "title": "What Is Topic Modeling?",
@@ -310,56 +317,56 @@
   {
     "objectID": "instructions/software_qda.html",
     "href": "instructions/software_qda.html",
-    "title": "1 · Software QDA",
+    "title": "1 · Software QDA (Qualitative Data Analysis)",
     "section": "",
     "text": "NoteBy the end of this section you will be able to\n\n\n\n\nExplain what software-assisted QDA does and when to use it\nCreate a simple codebook and apply codes to interview text in QualCoder\nDescribe how manual coding relates to — and differs from — the computational methods that follow"
   },
   {
     "objectID": "instructions/software_qda.html#what-is-software-assisted-qda",
     "href": "instructions/software_qda.html#what-is-software-assisted-qda",
-    "title": "1 · Software QDA",
+    "title": "1 · Software QDA (Qualitative Data Analysis)",
     "section": "What Is Software-Assisted QDA?",
     "text": "What Is Software-Assisted QDA?\nQualitative data analysis software gives you a structured environment for doing what qualitative researchers have always done: read closely, annotate, and organize meaning. The difference from paper and highlighters is scale and structure. With QDA software you can:\n\nCode — assign labels to passages and retrieve all passages sharing a code\nMemo — write interpretive notes attached to data or codes\nQuery — search across codes, documents, and annotations\nVisualize — generate code co-occurrence maps and frequency charts\n\nThe analysis is still human-driven. The software does not find themes; it helps you track and retrieve the themes you identify.\n\n\n\n\n\n\nTipWhen to use software-assisted QDA\n\n\n\n\nYour dataset is small enough to read closely (dozens to low hundreds of documents)\nYour research question requires careful attention to context, tone, and nuance\nYou are working collaboratively and need shared codebooks\nYour data includes multimedia (audio, video, images)\nYou want to document your analytical process for transparency\n\n\n\nMost QDA tools support a common set of data types:\n\n\n\n\n\n\n\nData type\nExamples\n\n\n\n\nPlain text\nInterview transcripts, field notes, open-ended survey responses\n\n\nDocuments\nPDFs, Word files\n\n\nSpreadsheets\nCSV exports from survey platforms\n\n\nImages\nScreenshots, photographs\n\n\nAudio / Video\nRecorded interviews, social media clips"
   },
   {
     "objectID": "instructions/software_qda.html#qda-tools",
     "href": "instructions/software_qda.html#qda-tools",
-    "title": "1 · Software QDA",
+    "title": "1 · Software QDA (Qualitative Data Analysis)",
     "section": "QDA Tools",
     "text": "QDA Tools\n\nQualCoder\nQualCoder is free, open-source, and functionally comparable to commercial alternatives. It runs locally on your computer — no subscription, no cloud account, and full control over your data.\n\n\n\nFeature\nDescription\n\n\n\n\nText coding\nHighlight passages and assign codes\n\n\nCodebook\nCreate and organize a hierarchical codebook\n\n\nCode retrieval\nPull all passages sharing a code across documents\n\n\nMemos\nAttach interpretive notes to codes or passages\n\n\nReports\nCode frequency, co-occurrence, intercoder agreement\n\n\nAI assist\nOptional local AI coding suggestions via Ollama\n\n\n\n\n\n\n\n\n\nTipInstallation and demo project\n\n\n\nA step-by-step setup guide and a ready-to-use demo project are available on Zenodo:\nzenodo.org/records/18604273\nThe archive includes:\n\nQualCoder-AI-setup.pdf — installation instructions and optional local AI configuration (Ollama + Llama 3.1)\nucldw2026-influencers-ai-demo.zip — a complete QualCoder project built on the same influencer interview dataset used in this workshop, with a pre-established codebook, memos, and AI prompts\n\nDownload the demo project to explore a fully coded project before building your own.\n\n\n\n\nATLAS.ti\nATLAS.ti is one of the most widely used commercial QDA platforms. UCR Library holds a license accessible at the STAR Lab using the public account. Note that a desktop session and a web session count as two separate users.\nATLAS.ti covers the same core functions as QualCoder with a more polished interface.\n\n\n\n\n\n\nTipUsing the STAR Lab\n\n\n\nThe STAR Lab is a specialty computing lab in the UCR Library with licensed software for research and data analysis. Make a reservation before your visit.\n\n\n\n\n\n\n\n\nTipOther tools worth knowing\n\n\n\n\nNVivo — available at the STAR Lab; note that UCR Library’s license is on an older version that cannot be updated\nMAXQDA — popular in social science; integrates with third-party LLMs (Claude, Gemini)\nTaguette — free, open-source, simpler than QualCoder; good for basic text coding"
   },
   {
     "objectID": "instructions/software_qda.html#ai-assisted-coding",
     "href": "instructions/software_qda.html#ai-assisted-coding",
-    "title": "1 · Software QDA",
+    "title": "1 · Software QDA (Qualitative Data Analysis)",
     "section": "AI-Assisted Coding",
     "text": "AI-Assisted Coding\nAll major QDA platforms now offer some form of AI assistance. The key distinction is where the AI runs and who controls the process.\n\n\n\n\n\n\n\n\n\nTool\nType\nAI\nData\n\n\n\n\nATLAS.ti, NVivo, MAXQDA\nCommercial\nCloud-based LLMs\nVendor-managed; data does not leave the platform\n\n\nQualCoder\nOpen source\nLocal models via Ollama\nStays on your machine; fully offline option\n\n\n\n\n\n\n\n\n\nImportantAI in qualitative research: a human-first principle\n\n\n\nAI tools can suggest codes, summarize passages, and group themes, but they cannot replace interpretive judgment. Current best practice treats the AI as a support tool, not a decision-maker:\n\nStructure prompts incrementally, one task at a time\nReview every AI suggestion before accepting it\nDocument your prompts, model used, and any decisions made\nDe-identify data before sending it to any cloud-based model\nPrefer local models (Ollama) when working with sensitive transcripts\n\nThe goal is human-in-the-loop analysis, not automated coding."
   },
   {
     "objectID": "instructions/software_qda.html#in-class-exercise",
     "href": "instructions/software_qda.html#in-class-exercise",
-    "title": "1 · Software QDA",
+    "title": "1 · Software QDA (Qualitative Data Analysis)",
     "section": "In-Class Exercise",
     "text": "In-Class Exercise\nThe in-class exercise uses Taguette — a browser-based tool that requires no installation and gets you coding in under two minutes.\n\n  Open hands-on exercise →"
   },
   {
     "objectID": "instructions/software_qda.html#take-home-explore-qualcoder",
     "href": "instructions/software_qda.html#take-home-explore-qualcoder",
-    "title": "1 · Software QDA",
+    "title": "1 · Software QDA (Qualitative Data Analysis)",
     "section": "Take-Home: Explore QualCoder",
     "text": "Take-Home: Explore QualCoder\nAfter the workshop, try the full QualCoder workflow using the Zenodo archive at zenodo.org/records/18604273.\nStep 1 — Install QualCoder. Download and follow the QualCoder-AI-setup.pdf in the archive. It walks you through installation on Mac, Windows, and Linux, and includes optional steps to enable the local AI function (Ollama + Llama 3.1).\nStep 2 — Open the demo project. Download and unzip ucldw2026-influencers-ai-demo.zip from the archive. Open QualCoder and load this project. It includes a codebook, project memos, and the AI prompts used during analysis.\nStep 3 — Build on the demo project. Using the existing codebook as a starting point, add new codes, apply them to additional paragraphs, or revise existing ones. A paragraph can receive more than one code.\nStep 4 — Reflect.\n\nWhich passages were easy to code? Which required judgment?\nDid any paragraph seem to fit two codes equally well?\nDid you add codes that were not in the original codebook?"
   },
   {
     "objectID": "instructions/software_qda.html#reflection-and-next-steps",
     "href": "instructions/software_qda.html#reflection-and-next-steps",
-    "title": "1 · Software QDA",
+    "title": "1 · Software QDA (Qualitative Data Analysis)",
     "section": "Reflection and Next Steps",
     "text": "Reflection and Next Steps\nWhen you move to computational methods in the next sections, keep these questions in mind:\n\nDoes the topic model find the same themes you identified by hand?\nDoes it find anything you missed?\nWhat does it miss that you caught?\n\nManual coding and computational modeling are not competitors. They are different entry points into the same data, each surfacing different aspects of the text."
   },
   {
     "objectID": "instructions/software_qda.html#additional-resources",
     "href": "instructions/software_qda.html#additional-resources",
-    "title": "1 · Software QDA",
+    "title": "1 · Software QDA (Qualitative Data Analysis)",
     "section": "Additional Resources",
     "text": "Additional Resources\nQualCoder\n\nInstallation and demo project — setup guide + pre-built influencer interview project (Zenodo)\nQualCoder releases — download the latest version\nLibrary Carpentry: Qualitative Data Analysis with QualCoder — covers case analysis, thematic analysis, and framework matrices\n\nATLAS.ti\n\nATLAS.ti trainings — live and on-demand sessions from the developer\nATLAS.ti research guides — step-by-step guides by feature and method\nATLAS.ti video tutorials — feature walkthroughs and demos\nSTAR Lab — access ATLAS.ti using the public account; make a reservation before your visit\n\nQDA Tools — General\n\nTemple University Libraries: Qualitative Data Analysis and Tools — tool comparisons, getting-started guides\nNYU Libraries: Qualitative Data Analysis — guides by method and tool\n\nAI in Qualitative Research\n\nCritical Integration of GenAI in Qualitative Analysis — prompting strategies and ethical considerations for AI-assisted qualitative coding (UC Love Data Week 2026)\nQualCoder wiki — documentation, feature notes, and community guides"
   },
@@ -523,12 +530,5 @@
     "title": "4b · Topic Modeling Exercise",
     "section": "Common Problems",
     "text": "Common Problems\nOllama is not running. Start Ollama from the Applications folder (Mac) or run ollama serve in a terminal. The Ollama icon should appear in the menu bar before you run the script.\nnomic-embed-text model not found. Run ollama pull nomic-embed-text and wait for the download to complete.\npython3.11 is not recognized. Check which Python versions are installed: python3 --version. If python3 is version 3.11, replace python3.11 with python3.\nWrong folder. Your terminal must be in the project folder — the one that contains data/, scripts/, outputs/, and requirements.txt."
-  },
-  {
-    "objectID": "slides.html#survey",
-    "href": "slides.html#survey",
-    "title": "Computational Approaches to Text Analysis",
-    "section": "Survey",
-    "text": "Survey\nPlease take a moment to fill out the course survey:\nhttps://forms.gle/yruyaG9VtdRzD5V4A"
   }
 ]
