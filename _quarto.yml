@@ -26,7 +26,7 @@ website:
         href: index.qmd
       - text: "Workshop"
         menu:
-          - text: "1 · Software QDA"
+          - text: "1 · Software QDA (Qualitative Data Analysis)"
             href: instructions/software_qda.qmd
           - text: "1b · Hands-On QDA Exercise"
             href: instructions/software_qda_exercise.qmd

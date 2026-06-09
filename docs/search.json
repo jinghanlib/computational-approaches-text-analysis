@@ -137,7 +137,7 @@
     "href": "slides.html#across-all-four-methods",
     "title": "Computational Approaches to Text Analysis",
     "section": "Across All Four Methods",
-    "text": "Across All Four Methods\n\n\n\n\n\n\n\n\nMethod\nSurfaces\nMisses\n\n\n\n\nManual coding\nNuance, context, tone\nScale\n\n\nWord counting\nVocabulary patterns\nMeaning and evaluation\n\n\nSentiment analysis\nSurface tone distribution\nGenre, irony, qualification\n\n\nTopic modeling\nThematic groupings\nWithin-topic variation\n\n\n\n\nNo single method is sufficient. Each entry point reveals something different about the same data."
+    "text": "Across All Four Methods\n\n\n\n\n\n\n\n\nMethod\nSurfaces\nMisses\n\n\n\n\nManual coding\nNuance, context, tone\nScale\n\n\nWord counting\nVocabulary patterns\nMeaning and evaluation\n\n\nSentiment analysis\nSurface tone distribution\nGenre, irony, qualification\n\n\nTopic modeling\nThematic groupings\nHow the theme is expressed differently across speakers\n\n\n\n\nNo single method is sufficient. Each entry point reveals something different about the same data."
   },
   {
     "objectID": "instructions/01_simple_explanation.html",
@@ -523,5 +523,12 @@
     "title": "4b · Topic Modeling Exercise",
     "section": "Common Problems",
     "text": "Common Problems\nOllama is not running. Start Ollama from the Applications folder (Mac) or run ollama serve in a terminal. The Ollama icon should appear in the menu bar before you run the script.\nnomic-embed-text model not found. Run ollama pull nomic-embed-text and wait for the download to complete.\npython3.11 is not recognized. Check which Python versions are installed: python3 --version. If python3 is version 3.11, replace python3.11 with python3.\nWrong folder. Your terminal must be in the project folder — the one that contains data/, scripts/, outputs/, and requirements.txt."
+  },
+  {
+    "objectID": "slides.html#survey",
+    "href": "slides.html#survey",
+    "title": "Computational Approaches to Text Analysis",
+    "section": "Survey",
+    "text": "Survey\nPlease take a moment to fill out the course survey:\nhttps://forms.gle/yruyaG9VtdRzD5V4A"
   }
 ]
